@@ -9,7 +9,7 @@ if [[ $1 == 'gateway' || $1 == 'all' ]]; then
   echo SETTING UP ENVIRONMENT
   sudo pip install virtualenv
   virtualenv -p python3 env
-  source evn/bin/activate
+  source env/bin/activate
   echo INSTALLING DEPENDENCIES
   pip install -r requirements.txt
   echo TESTING SERVICE
@@ -23,7 +23,7 @@ if [[ $1 == 'flask' || $1 == 'all' ]]; then
   echo SETTING UP ENVIRONMENT
   sudo pip install virtualenv
   virtualenv -p python3 env
-  source evn/bin/activate
+  source env/bin/activate
   echo INSTALLING DEPENDENCIES
   pip install -r requirements.txt
   echo TESTING SERVICE
