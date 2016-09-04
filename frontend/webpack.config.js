@@ -1,8 +1,9 @@
+
 module.exports = {
   context: __dirname,
   entry: "./main.jsx",
   output: {
-    path: "../gateway/dev_assets/",
+    path: "./assets/",
     filename: "bundle.js"
   },
   module: {

@@ -1,0 +1,24 @@
+install virtualenv:
+$ pip install virtualenv
+
+create virtual environment:
+$ virtualenv [name]
+
+activate virtual environment:
+$ source [name]/bin/activate
+
+install dependencies:
+$ pip install -r requirements.text
+
+add new dependencies to requirements.txt:
+$ pip freeze > requirements.text
+
+run server:
+$ python [filename]
+
+run server in debug mode:
+$ export FLASK_DEBUG=1
+$ python [filename]
+
+deactivate virtual environment:
+$ deactivate

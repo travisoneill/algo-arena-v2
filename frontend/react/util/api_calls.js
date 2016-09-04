@@ -8,6 +8,7 @@ module.exports = {
       data: JSON.stringify(data),
       dataType: 'json',
       success(resp){
+        console.log(resp);
         action(resp);
       },
       error(resp){
