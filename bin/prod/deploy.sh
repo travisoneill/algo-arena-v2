@@ -27,7 +27,7 @@ if [[ $1 == 'flask' || $1 == 'all' ]]; then
   sudo pip install virtualenv
   virtualenv -p python3 env
   source evn/bin/activate
-  echo INSTALLING dependencies
+  echo INSTALLING DEPENDENCIES
   pip install -r requirements.txt
   echo DEPLOYING SERVICE
   gcloud app deploy
