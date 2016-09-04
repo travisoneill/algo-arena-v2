@@ -1,5 +1,5 @@
 # [START runtime]
-module: flask
+service: flask
 runtime: python
 vm: true
 entrypoint: gunicorn -b :$PORT flask_server:app
