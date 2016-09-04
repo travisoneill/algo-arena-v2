@@ -15,8 +15,8 @@ def root():
 @app.route('/api/algos', methods=['POST'])
 def send():
     urls = {
-        'flask': 'https://flask-algo.appspot.com',
-        'node': 'https://tough-hull-141417.appspot.com'
+        'flask': 'https://flask-dot-algorithm-arena.appspot.com/test',
+        'node': 'https://express-dot-algorithm-arena.appspot.com'
     }
     services = {
         'javascript': 'node',
