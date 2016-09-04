@@ -1,5 +1,17 @@
 # Algo Arena
 
+To set up development environment run:
+$ ./dev_config.sh
+$ ./dev_startup.sh
+
+To shut down or reset
+$ ./dev_shutdown
+$ ./dev_reset
+
+
+
+## ***DEPECATED***
+
 [Algo Arena live][live_url]
 
 [live_url]: https://cryptic-tundra-51153.herokuapp.com/
