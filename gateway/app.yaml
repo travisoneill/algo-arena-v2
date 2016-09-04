@@ -1,4 +1,5 @@
 # [START runtime]
+module: default
 runtime: python
 vm: true
 entrypoint: gunicorn -b :$PORT api_gateway:app
