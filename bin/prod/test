@@ -12,11 +12,8 @@ if [[ $1 == 'gateway' || $1 == 'all' ]]; then
   source evn/bin/activate
   echo INSTALLING DEPENDENCIES
   pip install -r requirements.txt
-  echo DEPLOYING SERVICE
-  gcloud app deploy
-  echo FINISH DEPLOY GATEWAY
-  deactivate
-  cd ..
+  echo TESTING SERVICE
+  gunicorn -b :8080 api_gateway:app
 fi
 
 if [[ $1 == 'flask' || $1 == 'all' ]]; then
@@ -29,11 +26,8 @@ if [[ $1 == 'flask' || $1 == 'all' ]]; then
   source evn/bin/activate
   echo INSTALLING DEPENDENCIES
   pip install -r requirements.txt
-  echo DEPLOYING SERVICE
-  gcloud app deploy
-  echo FINISH DEPLOY FLASK
-  deactivate
-  cd ..
+  echo TESTING SERVICE
+  gunicorn -b :8080 flask_server:app
 fi
 
 if [[ $1 == 'node' || $1 == 'all' ]]; then
