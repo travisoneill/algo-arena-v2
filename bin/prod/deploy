@@ -13,7 +13,8 @@ if [[ $1 == 'gateway' || $1 == 'all' ]]; then
   echo INSTALLING DEPENDENCIES
   pip install -r requirements.txt
   echo DEPLOYING SERVICE
-  gcloud app deploy
+  gcloud app deploy app.yaml
+  Y
   echo FINISH DEPLOY GATEWAY
   deactivate
   cd ..
@@ -30,7 +31,8 @@ if [[ $1 == 'flask' || $1 == 'all' ]]; then
   echo INSTALLING DEPENDENCIES
   pip install -r requirements.txt
   echo DEPLOYING SERVICE
-  gcloud app deploy
+  gcloud app deploy app.yaml
+  Y
   echo FINISH DEPLOY FLASK
   deactivate
   cd ..
@@ -42,7 +44,8 @@ if [[ $1 == 'node' || $1 == 'all' ]]; then
   cd node
   echo SETTING UP ENVIRONMENT
   npm install
-  gcloud app deploy
+  gcloud app deploy app.yaml
+  Y
   echo FINISH DEPLOY NODE
   cd ..
 fi
