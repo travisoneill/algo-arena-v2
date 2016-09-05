@@ -1,6 +1,6 @@
 #!/bin/bash
-
 valid=false
+git pull
 
 if [[ $1 == 'gateway' || $1 == 'all' ]]; then
   valid=true
