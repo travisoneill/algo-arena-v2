@@ -1,6 +1,18 @@
 #!/bin/bash
 valid=false
-git pull
+if [[ $1 == 'static' || $1 == 'all' ]]; then
+  valid=true
+  cd frontend
+  npm run webpack_deploy
+  gcloud config set project algorithm-arena
+  gsutil rm gs://algorithm-arena-static/bundle.js
+  gsutil rm gs://algorithm-arena-static/style.css
+  gsutil cp assets/style.css gs://algorithm-arena-static
+  gsutil cp assets/deploy/bundle.js gs://algorithm-arena-static
+  gsutil acl ch -u AllUsers:R gs://algorithm-arena-static/style.css
+  gsutil acl ch -u AllUsers:R gs://algorithm-arena-static/bundle.js
+  cd ..
+fi
 
 if [[ $1 == 'gateway' || $1 == 'all' ]]; then
   valid=true
