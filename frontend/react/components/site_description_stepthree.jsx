@@ -1,5 +1,4 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
 
 const SiteDescriptionThree = React.createClass({
   render(){

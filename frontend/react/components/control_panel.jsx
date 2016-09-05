@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import * as ClientActions from '../actions/client_actions';
 import * as Library from '../util/sorts';
 import * as Hover from '../util/hover_text';
-const ReactTooltip = require("react-tooltip");
-const DataStore = require('../stores/data_store');
+import ReactTooltip from "react-tooltip";
+import DataStore from '../stores/data_store';
 
 const ControlPanel = React.createClass({
 

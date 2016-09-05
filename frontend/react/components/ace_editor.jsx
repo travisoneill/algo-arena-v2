@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as ClientActions from '../actions/client_actions';
 import LanguageDropdown from './language_dropdown';
 

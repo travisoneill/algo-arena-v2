@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import * as ServerActions from '../actions/server_actions';
-const DataStore = require('../stores/data_store');
-const d3Chart = require('./d3graph');
+import DataStore from '../stores/data_store';
+import d3Chart from './d3graph';
 
 
 const D3Graph = React.createClass({

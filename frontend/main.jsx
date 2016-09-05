@@ -1,14 +1,14 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const D3 = require('./react/components/d3_chart_react');
-const ControlPanel = require('./react/components/control_panel');
-const Modal = require('react-modal');
-const ModalParams = require('./react/util/modal_params');
-const WelcomeMessage = require('./react/components/welcome_message');
-const AceEditor = require('./react/components/ace_editor');
-const Footer = require('./react/components/footer');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import D3Container from './react/components/d3_chart_react';
+import ControlPanel from './react/components/control_panel';
+import Modal from 'react-modal';
+import ModalParams from './react/util/modal_params';
+import WelcomeMessage from './react/components/welcome_message';
+import AceEditor from './react/components/ace_editor';
+import Footer from './react/components/footer';
 
 const App = React.createClass({
   getInitialState() {
@@ -49,7 +49,7 @@ const App = React.createClass({
         </div>
         <div className='upper-container' >
           <AceEditor n={1}/>
-          <D3 />
+          <D3Container />
           <AceEditor n={2} />
         </div>
         <div className='lower-container'>

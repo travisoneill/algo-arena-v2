@@ -1,11 +1,9 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const SiteDescriptionOne = require('./site_description_stepone');
-const SiteDescriptionTwo = require('./site_description_steptwo');
-const SiteDescriptionThree = require('./site_description_stepthree');
+import React from 'react';
+import SiteDescriptionOne from './site_description_stepone';
+import SiteDescriptionTwo from './site_description_steptwo';
+import SiteDescriptionThree from './site_description_stepthree';
 import * as Library from '../util/sorts';
 import * as ClientActions from '../actions/client_actions';
-
 
 const WelcomeMessage = React.createClass({
   getInitialState() {

@@ -1,8 +1,8 @@
-const React = require('react');
+import React from 'react';
 
 const Footer = React.createClass({
 
-  render: function() {
+  render() {
     let text = "Site Designed & Built by Travis O'Neill & Daniel 'Coop' Cuperman"
     return (
       <div className="footer-column">

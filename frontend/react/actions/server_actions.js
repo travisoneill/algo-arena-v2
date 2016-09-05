@@ -1,5 +1,4 @@
-// import { AppDispatcher } from '../dispatcher/dispatcher';
-const AppDispatcher = require('../dispatcher/dispatcher');
+import AppDispatcher from '../dispatcher/dispatcher';
 
 module.exports = {
 
