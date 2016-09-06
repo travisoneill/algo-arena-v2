@@ -47,7 +47,7 @@ Server.get('/', function(req, res){
     path: ports['static']
   };
 
-  http.request(options, httpCallback).end();
+  res.send(http.request(options, httpCallback).end());
 });
 
 Server.post('/api/algos', function(req, res){
@@ -87,7 +87,7 @@ const sendData = function(server, data) {
   else {
     return {body: 'server routing error'};
   }
-  http.request(options, httpCallback).end();
+  return http.request(options, httpCallback).end();
 };
 
 if (module === require.main) {
