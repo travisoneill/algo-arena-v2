@@ -1,16 +1,25 @@
 # Algo Arena
 
-To set up development environment run:\n$ ./dev_config.sh\n$ ./dev_startup.sh
+[Algo Arena live][live_url]
 
-To shut down or reset\n$ ./dev_shutdown\n$ ./dev_reset
+[live_url]: http://algorithm-arena.appspot.com/
+
+To set up development environment run:
+
+$ ./dev_config.sh
+
+$ ./dev_startup.sh
+
+To shut down or reset
+
+$ ./dev_shutdown
+
+$ ./dev_reset
 
 
 
 ## ***DEPECATED***
 
-[Algo Arena live][live_url]
-
-[live_url]: https://cryptic-tundra-51153.herokuapp.com/
 
 Algo Arena is a full stack web application that allows users to input their own sort algorithms and benchmark them.  
 It utilizes Node.js & Express server on the backend and React.js and D3 with flux architecture on the front end.    
