@@ -4,6 +4,7 @@ const Express = require('express');
 const Path = require('path');
 const BodyParser = require('body-parser');
 const Controller = require('./');
+const http = require('http');
 const Server = Express();
 
 const ports = {
@@ -17,6 +18,22 @@ const services = {
     'python': 'flask'
 };
 
+const httpCallback = function(response){
+  let str = '';
+
+  //another chunk of data has been recieved, so append it to `str`
+  response.on('data', function (chunk) {
+    str += chunk;
+  });
+
+  //the whole response has been recieved, so we just print it out here
+  response.on('end', function () {
+    console.log(str);
+  });
+
+  return str;
+};
+
 Server.use(BodyParser.urlencoded({
   extended: true,
   parameterLimit: 10000,
@@ -25,7 +42,12 @@ Server.use(BodyParser.urlencoded({
 
 Server.get('/', function(req, res){
   console.log("Hello from Root /");
-  res.send();
+  let options = {
+    host: "http://localhost:",
+    path: ports['static']
+  };
+
+  http.request(options, httpCallback).end();
 });
 
 Server.post('/api/algos', function(req, res){
@@ -41,9 +63,9 @@ Server.post('/api/algos', function(req, res){
       let language = data[key]['language'];
       let server = services[language];
       let request_url = req.params[0];
-      let outgoing_data = {'lengthArr': testParams, 'request_data': data[key]};
+      let outgoingData = {'lengthArr': testParams, 'request_data': data[key]};
       let headers = {'Content-Type' : 'application/json'};
-      let response = sendData(server);
+      let response = sendData(server, outgoingData);
       finalData[key] = response.body;
     }
   }
@@ -51,16 +73,21 @@ Server.post('/api/algos', function(req, res){
   res.send(finalData);
 });
 
-const sendData = function(server) {
+const sendData = function(server, data) {
+  let options = {
+    host: "http://localhost:",
+    path: ports['static']
+  };
   if(server === 'node') {
-
+    options['path'] = ports['node'];
   }
   else if (server === 'flask') {
-    
+    options['path'] = ports['flask'];
   }
   else {
     return {body: 'server routing error'};
   }
+  http.request(options, httpCallback).end();
 };
 
 if (module === require.main) {
