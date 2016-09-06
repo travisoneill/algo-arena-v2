@@ -1,12 +1,8 @@
 # Algo Arena
 
-To set up development environment run:
-$ ./dev_config.sh
-$ ./dev_startup.sh
+To set up development environment run:\n$ ./dev_config.sh\n$ ./dev_startup.sh
 
-To shut down or reset
-$ ./dev_shutdown
-$ ./dev_reset
+To shut down or reset\n$ ./dev_shutdown\n$ ./dev_reset
 
 
 
