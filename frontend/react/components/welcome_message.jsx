@@ -58,7 +58,7 @@ const WelcomeMessage = React.createClass({
     const el2 = document.getElementById('editor-2');
     const bs = Library[`bubbleSort`]('javascript');
     const qs = Library[`quickSortRec`]('python');
-    ace.edit(el1).getSession().setValue(qs)
+    ace.edit(el1).getSession().setValue(qs);
     ace.edit(el1).getSession().setMode('ace/mode/python');
     ace.edit(el2).getSession().setValue(bs);
     debugger;
@@ -119,7 +119,7 @@ const SiteDescriptionOne = React.createClass({
     return(
       <div className='modal-container one'>
        <h2 className='welcome-text'>Welcome to Algo Arena</h2>
-       <p className='description-text'>BUNDLE JS UPDATED</p>
+       <p className='description-text'>Make your sort alogrithms battle to the death.  Now in JavaScript and Python.</p>
 
        <img className='stepone-img' style={{'margin': '0 auto'}} src='https://storage.googleapis.com/algorithm-arena-static/intro.gif'></img>
 
@@ -129,7 +129,7 @@ const SiteDescriptionOne = React.createClass({
   }
 
 });
-// <p className='description-text'>Make your sort alogrithms battle to the death.  Now in JavaScript and Python.</p>
+// <p className='description-text'>BUNDLE JS UPDATED</p>
 
 const SiteDescriptionTwo = React.createClass({
   render(){
