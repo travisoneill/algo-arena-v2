@@ -12,6 +12,7 @@ bundle.js
 bundle.js.map
 node_modules/
 venv/
+env/
 /assets/bundle.js
 /assets/lodash/
 /assets/contour/
