@@ -6,7 +6,7 @@ const Path = require('path');
 const Controller = require('./controller');
 const BodyParser = require('body-parser');
 
-Server.use(BodyParser.json())
+Server.use(BodyParser.json());
 
 Server.get('/', function(req, res){
   console.log("Hello.  Node Server is running");
