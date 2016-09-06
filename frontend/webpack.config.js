@@ -1,4 +1,3 @@
-
 module.exports = {
   context: __dirname,
   entry: "./main.jsx",

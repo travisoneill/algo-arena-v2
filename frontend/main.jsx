@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import D3Container from './react/components/d3_chart_react';
