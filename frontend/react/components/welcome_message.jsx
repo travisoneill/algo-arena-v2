@@ -40,6 +40,7 @@ const WelcomeMessage = React.createClass({
   //get values from editor element and package into json request
   parseEditor(el){
     //not DRY.  REFACTOR.
+    debugger;
     const language = ace.edit(el).getSession().getMode().$id.match(/\w*$/)[0];
     const text = ace.edit(el).getSession().getValue();
     const name = text.match(/\s(.*?)\(/)[1];
@@ -52,16 +53,20 @@ const WelcomeMessage = React.createClass({
   runDemo(evt) {
     //janky and not DRY.  REFACTOR.
     evt.preventDefault();
+    debugger;
     const el1 = document.getElementById('editor-1');
     const el2 = document.getElementById('editor-2');
-    const bs = Library[`bubbleSort`]();
-    const qs = Library[`quickSortRec`]();
-    ace.edit(el1).getSession().setValue(qs);
+    const bs = Library[`bubbleSort`]('javascript');
+    const qs = Library[`quickSortRec`]('python');
+    ace.edit(el1).getSession().setValue(qs)
+    ace.edit(el1).getSession().setMode('ace/mode/python');
     ace.edit(el2).getSession().setValue(bs);
+    debugger;
     const data1 = this.parseEditor(el1);
     const data2 = this.parseEditor(el2);
     const lengthArr = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
     const data = { data1: data1, data2: data2, lengthArr: lengthArr };
+    debugger;
     ClientActions.sendMethods(data);
     this.props.closeModal();
   },
