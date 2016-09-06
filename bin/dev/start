@@ -16,3 +16,5 @@ export FLASK_DEBUG=1
 python flask_server_dev.py & bg
 deactivate & bg
 cd ..
+
+#trap

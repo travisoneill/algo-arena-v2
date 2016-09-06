@@ -1,7 +1,4 @@
 import React from 'react';
-import SiteDescriptionOne from './site_description_stepone';
-import SiteDescriptionTwo from './site_description_steptwo';
-import SiteDescriptionThree from './site_description_stepthree';
 import * as Library from '../util/sorts';
 import * as ClientActions from '../actions/client_actions';
 
@@ -13,7 +10,7 @@ const WelcomeMessage = React.createClass({
   },
 
   previousInstructions() {
-    let newStateNum = this.state.siteDescriptionNumber - 1;
+    let newStateNum = this.state.siteDescriptionNumber;
     if (newStateNum < 1) {
       newStateNum = 1;
     }
@@ -111,5 +108,89 @@ const WelcomeMessage = React.createClass({
 
 });
 
+
+const SiteDescriptionOne = React.createClass({
+  render(){
+    return(
+      <div className='modal-container one'>
+       <h2 className='welcome-text'>Welcome to Algo Arena</h2>
+       <p className='description-text'>BUNDLE JS UPDATED</p>
+
+       <img className='stepone-img' style={{'margin': '0 auto'}} src='https://storage.googleapis.com/algorithm-arena-static/intro.gif'></img>
+
+     </div>
+
+    );
+  }
+
+});
+// <p className='description-text'>Make your sort alogrithms battle to the death.  Now in JavaScript and Python.</p>
+
+const SiteDescriptionTwo = React.createClass({
+  render(){
+    return(
+      <div className='modal-container two'>
+        <h2 className='welcome-text'>Instructions</h2>
+        <div className='step-two'>
+          <ul className='description-text-ul'>
+            <li>
+              To test your algorithm, please input it into the text pane of your choice! You can pit it against your own algorithm, or against one of our built in sorts!
+            </li>
+            <li>
+              You are restricted to ES5 Syntax, ES6 synatax may not compile in our virtual machines. No Consts or Lets please!
+            </li>
+            <li>
+              Please note, if your function takes longer than 45 seconds to sort any array, it will be disabled.
+            </li>
+            <li>
+              Due to limitations of these virtual machines, we cannot currently allow the use of Promises, or the requirement of any external modules/packages. POJO only!
+            </li>
+            <li>
+              At this time we are pleased to offer the JS Library Sort, Bubble Sort, Quick Sort(recursive), Merge Sort(iterative), Radix Sort, Heap Sort, and Counting Sort.
+            </li>
+            <li>
+              Once you press Run Tests, we will benchmark your code server-side with the use of virtual machines.
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  }
+
+});
+
+const SiteDescriptionThree = React.createClass({
+  render(){
+    return(
+       <div className='modal-container'>
+         <h2 className='welcome-text'>Examples</h2>
+         <div className='step-three'>
+           <p>
+             Here are some video tutorials for the inexperienced among us:
+           </p>
+           <p>
+             Bubble Sort
+             <br></br>
+             <a href="https://www.youtube.com/watch?v=Jdtq5uKz-w4" target='_blank'>Video Tutorial</a>
+           </p>
+           <p>
+             Quick Sort
+             <br></br>
+             <a href="https://www.youtube.com/watch?v=TzeBrDU-JaY" target='_blank'>Video Tutorial</a>
+           </p>
+           <p>
+             Merge Sort
+             <br></br>
+             <a href="https://www.youtube.com/watch?v=TzeBrDU-JaY&index=5&list=PL2_aWCzGMAwKedT2KfDMB9YA5DgASZb3U" target='_blank'>Video Tutorial</a>
+           </p>
+
+           <h2>
+             HAPPY SORTING!!
+           </h2>
+         </div>
+       </div>
+    );
+  }
+});
 
 module.exports = WelcomeMessage;
