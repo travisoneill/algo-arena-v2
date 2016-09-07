@@ -3,7 +3,6 @@
 const Express = require('express');
 const Path = require('path');
 const BodyParser = require('body-parser');
-const Controller = require('./');
 const http = require('http');
 const Server = Express();
 
@@ -20,6 +19,7 @@ const services = {
 
 const httpCallback = function(response){
   let str = '';
+  console.log("Got response: " + response.statusCode);
 
   //another chunk of data has been recieved, so append it to `str`
   response.on('data', function (chunk) {
@@ -28,10 +28,8 @@ const httpCallback = function(response){
 
   //the whole response has been recieved, so we just print it out here
   response.on('end', function () {
-    console.log(str);
+    return str;
   });
-
-  return str;
 };
 
 Server.use(BodyParser.urlencoded({
@@ -42,12 +40,17 @@ Server.use(BodyParser.urlencoded({
 
 Server.get('/', function(req, res){
   console.log("Hello from Root /");
-  let options = {
-    host: "http://localhost:",
-    path: ports['static']
-  };
+  // let options = {
+  //   host: "",
+  //   path: ports['static']
+  // };
+  let staticServerURL = 'http://localhost:8003';
+  // console.log(http.get(staticServerURL, httpCallback).content)
+  // Server.use(Express.static(http.get(staticServerURL, httpCallback)));
+  // res.setHeader('Content-Type', 'text/html');
 
-  res.send(http.request(options, httpCallback).end());
+  console.log(http.get(staticServerURL, httpCallback));
+  res.send(http.get(staticServerURL, httpCallback).content);
 });
 
 Server.post('/api/algos', function(req, res){
