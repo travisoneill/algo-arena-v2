@@ -27,14 +27,3 @@ Server.get('/', function(req, res){
 Server.listen( process.env.PORT || 8003, function(){
   console.log('Server Running');
 });
-
-// FOR LIVE SERVER
-// Server.listen(process.env.PORT, function(){
-//   console.log('Server Running');
-// });
-
-
-// // FOR DEV SERVER
-// Server.listen(8003, function(){
-//   console.log('Server Running');
-// });
