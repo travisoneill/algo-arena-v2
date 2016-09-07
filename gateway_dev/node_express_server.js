@@ -91,7 +91,7 @@ const sendData = function(server, data) {
 };
 
 if (module === require.main) {
-  var server = Server.listen(process.env.PORT || 8001, function () {
+  var server = Server.listen(process.env.PORT || 5000, function () {
     var port = server.address().port;
     console.log('Node Server listening on port %s', port);
   });
