@@ -17,6 +17,7 @@ env/
 /assets/lodash/
 /assets/contour/
 /assets/src/
+npm-debug.log
 
 
 
