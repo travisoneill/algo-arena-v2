@@ -17,20 +17,7 @@ const services = {
     'python': 'flask'
 };
 
-const httpCallback = function(response){
-  let str = '';
-  console.log("Got response: " + response.statusCode);
 
-  //another chunk of data has been recieved, so append it to `str`
-  response.on('data', function (chunk) {
-    str += chunk;
-  });
-
-  //the whole response has been recieved, so we just print it out here
-  response.on('end', function () {
-    return str;
-  });
-};
 
 Server.use(BodyParser.urlencoded({
   extended: true,
@@ -40,17 +27,28 @@ Server.use(BodyParser.urlencoded({
 
 Server.get('/', function(req, res){
   console.log("Hello from Root /");
+  let str = '';
+  const httpCallback = function(response){
+
+    console.log("Got response: " + response.statusCode);
+
+    //another chunk of data has been recieved, so append it to `str`
+    response.on('data', function (chunk) {
+      str += chunk;
+    });
+
+    //the whole response has been recieved, so we just print it out here
+    response.on('end', function () {
+      res.send(str);
+    });
+  };
   // let options = {
   //   host: "",
   //   path: ports['static']
   // };
   let staticServerURL = 'http://localhost:8003';
-  // console.log(http.get(staticServerURL, httpCallback).content)
-  // Server.use(Express.static(http.get(staticServerURL, httpCallback)));
-  // res.setHeader('Content-Type', 'text/html');
 
-  console.log(http.get(staticServerURL, httpCallback));
-  res.send(http.get(staticServerURL, httpCallback).content);
+  http.get(staticServerURL, httpCallback);
 });
 
 Server.post('/api/algos', function(req, res){
