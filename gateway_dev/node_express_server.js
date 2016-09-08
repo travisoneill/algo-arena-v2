@@ -25,58 +25,69 @@ Server.use(BodyParser.urlencoded({
   limit: 1024 * 1024 * 10
 }));
 
+Server.use(BodyParser.json());
+
 Server.get('/', function(req, res){
   console.log("Hello from Root /");
   let str = '';
   const httpCallback = function(response){
-
-    console.log("Got response: " + response.statusCode);
-
-    //another chunk of data has been recieved, so append it to `str`
+    // console.log("Got response: " + response.statusCode);
     response.on('data', function (chunk) {
       str += chunk;
     });
-
-    //the whole response has been recieved, so we just print it out here
     response.on('end', function () {
       res.send(str);
     });
   };
-  // let options = {
-  //   host: "",
-  //   path: ports['static']
-  // };
+
   let staticServerURL = 'http://localhost:8003';
 
   http.get(staticServerURL, httpCallback);
 });
 
-Server.post('/api/algos', function(req, res){
-  let data = req.body;
-  let testParams = data['lengthArr'];
+Server.get('/bundle*', function(req, res){
+  res.redirect('http://localhost:8003/bundle.js');
+});
 
+Server.get('/style*', function(req, res){
+  res.redirect('http://localhost:8003/style.css');
+});
+
+Server.post('/api/algos', function(req, res){
+  console.log('###API ALGO ROUTE###');
+  let data = req.body;
+  let testParams = data.lengthArr;
   let finalData = {};
+
+  const sendResponseCallback = function() {
+    res.send(finalData);
+  };
+
   for (let key in data){
-    if (key !== 'data'){
+    if (key === 'lengthArr'){
       continue;
     }
     else{
+
+      //TO-DO make this work. go through it from the start the below is a very roughg shell that is crap
+
       let language = data[key]['language'];
       let server = services[language];
       let request_url = req.params[0];
       let outgoingData = {'lengthArr': testParams, 'request_data': data[key]};
       let headers = {'Content-Type' : 'application/json'};
-      let response = sendData(server, outgoingData);
-      finalData[key] = response.body;
+      let response = sendData(server, outgoingData, sendResponseCallback);
+      finalData[key] = response;
     }
   }
 
-  res.send(finalData);
+
 });
 
-const sendData = function(server, data) {
+const sendData = function(server, data, sendResponseCallback) {
+  console.log('###IN SEND DATA###');
   let options = {
-    host: "http://localhost:",
+    host: "http://localhost",
     path: ports['static']
   };
   if(server === 'node') {
@@ -88,7 +99,7 @@ const sendData = function(server, data) {
   else {
     return {body: 'server routing error'};
   }
-  return http.request(options, httpCallback).end();
+  // return http.request(options, httpCallback).end();
 };
 
 if (module === require.main) {
