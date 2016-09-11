@@ -1,4 +1,6 @@
-'use strict'
+'use strict';
+
+//TODO pull testArrayMaker && benchMarker into files. You get syntax highlighting if it is in .js
 
 const testArrayMaker =
   `

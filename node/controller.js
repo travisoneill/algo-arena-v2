@@ -5,7 +5,7 @@ const VM = require('./vm');
 module.exports = {
   receiveCode(codeObj) {
     const lengthArr = codeObj.lengthArr;
-    const requestData = codeObj.request_data;
+    const requestData = codeObj.request_data; //FIXME - what does this do?
     const method = requestData.method;
     const name = requestData.name;
     console.log(method);
