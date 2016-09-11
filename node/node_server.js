@@ -13,11 +13,6 @@ Server.get('/', function(req, res){
   res.send("Hello.  Node Server is running");
 });
 
-Server.get('/test', function(req, res){
-  console.log("Hello.  Node Server is running");
-  res.send("Hello.  Node Server is running");
-});
-
 Server.post('/api/algos', function(req, res){
   let data = Controller.receiveCode(req.body);
   res.send(data);

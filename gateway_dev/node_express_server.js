@@ -17,6 +17,7 @@ const services = {
     'python': 'flask'
 };
 
+const staticServerURL = 'http://localhost:8003';
 
 
 Server.use(BodyParser.urlencoded({
@@ -40,17 +41,16 @@ Server.get('/', function(req, res){
     });
   };
 
-  let staticServerURL = 'http://localhost:8003';
 
   http.get(staticServerURL, httpCallback);
 });
 
 Server.get('/bundle*', function(req, res){
-  res.redirect('http://localhost:8003/bundle.js');
+  res.redirect(staticServerURL + 'bundle.js');
 });
 
 Server.get('/style*', function(req, res){
-  res.redirect('http://localhost:8003/style.css');
+  res.redirect(staticServerURL + 'style.css');
 });
 
 Server.post('/api/algos', function(req, res){
@@ -68,9 +68,8 @@ Server.post('/api/algos', function(req, res){
       continue;
     }
     else{
-
       //TO-DO make this work. go through it from the start the below is a very roughg shell that is crap
-
+      console.log(data);
       let language = data[key]['language'];
       let server = services[language];
       let request_url = req.params[0];
