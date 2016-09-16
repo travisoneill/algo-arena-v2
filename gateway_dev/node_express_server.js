@@ -46,21 +46,30 @@ Server.get('/', function(req, res){
 });
 
 Server.get('/bundle*', function(req, res){
-  res.redirect(staticServerURL + 'bundle.js');
+  res.redirect(staticServerURL + '/bundle.js');
 });
 
 Server.get('/style*', function(req, res){
-  res.redirect(staticServerURL + 'style.css');
+  res.redirect(staticServerURL + '/style.css');
 });
 
 Server.post('/api/algos', function(req, res){
   console.log('###API ALGO ROUTE###');
   let data = req.body;
   let testParams = data.lengthArr;
-  let finalData = {};
 
-  const sendResponseCallback = function() {
+  const sendResponseCallback = function(finalData) {
     res.send(finalData);
+  };
+  sendData(testParams, data, sendResponseCallback);
+});
+
+const sendData = function(testParams, data, sendResponseCallback) {
+  console.log('###IN SEND DATA###');
+  let finalData = {};
+  let options = {
+    host: "http://localhost",
+    path: ports['static']
   };
 
   for (let key in data){
@@ -68,37 +77,40 @@ Server.post('/api/algos', function(req, res){
       continue;
     }
     else{
-      //TO-DO make this work. go through it from the start the below is a very roughg shell that is crap
-      console.log(data);
+      console.log('else in key loop');
       let language = data[key]['language'];
       let server = services[language];
-      let request_url = req.params[0];
+      switch (server) {
+        case 'node':
+          options['path'] = ports['node'];
+          break;
+        case 'flask':
+          options['path'] = ports['flask'];
+          break;
+        // default:
+        // console.log('wtf default');
+        //   return {body: 'server routing error'};
+      }
+      // let requestUrl = req.params[0];
       let outgoingData = {'lengthArr': testParams, 'request_data': data[key]};
       let headers = {'Content-Type' : 'application/json'};
-      let response = sendData(server, outgoingData, sendResponseCallback);
-      finalData[key] = response;
+
+      // let response = //this is where the http request to the node server goes
+      // finalData[key] = response;
     }
   }
-
-
-});
-
-const sendData = function(server, data, sendResponseCallback) {
-  console.log('###IN SEND DATA###');
-  let options = {
-    host: "http://localhost",
-    path: ports['static']
-  };
-  if(server === 'node') {
-    options['path'] = ports['node'];
-  }
-  else if (server === 'flask') {
-    options['path'] = ports['flask'];
-  }
-  else {
-    return {body: 'server routing error'};
-  }
-  // return http.request(options, httpCallback).end();
+  console.log('####FINALDATA####');
+  console.log(finalData);
+  sendResponseCallback({data1: {
+                                xAxis: testParams,
+                                rawData: [{x:1000, y:1000}, {x:3000, y:3000}, {x: 10000, y: 10000}],
+                                name: data.name},
+                        data2: {
+                                xAxis: testParams,
+                                rawData: [{x:1000, y:1000}, {x:3000, y:3000}, {x: 10000, y: 10000}],
+                                name: data.name
+                                }
+  });
 };
 
 if (module === require.main) {
