@@ -109,7 +109,7 @@ const ControlPanel = React.createClass({
     //assembles JSON to be sent to back end
     const data = { data1: data1, data2: data2, lengthArr: lengthArr };
     console.log(data);
-    debugger;
+    // debugger;
     ClientActions.sendMethods(data);
   },
 
