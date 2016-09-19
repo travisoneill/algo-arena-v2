@@ -1,7 +1,7 @@
 #!/bin/bash
 echo development server start
 cd gateway_dev
-DEBUG=express:* node node_express_server.js & bg
+DEBUG=express:* node node_express_server .js & bg
 cd ../frontend
 DEBUG=express:* node static_server.js & bg
 npm run webpack_watch & fg
