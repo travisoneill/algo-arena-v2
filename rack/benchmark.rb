@@ -7,10 +7,6 @@ def random_array(length=10000, lo=-1000000, hi=1000000, data_type='integer')
   return random
 end
 
-def ta
-  random_array(length=20, lo=-1000000, hi=1000000)
-end
-
 def handle_request(int_array, data_hash)
   code = data_hash['method']
   name = data_hash['name']

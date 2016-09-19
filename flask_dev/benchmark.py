@@ -30,7 +30,7 @@ def run_test(int_array, test_function, iterations=1):
         results.append({"x": n, "y": data['avg']})
     return results
 
-def random_array(length, min=0, max=10):
+def random_array(length, min=1000000, max=1000000):
     """random_array(n, min=-1000000, max=1000000)
          returns ARRAY of random INTS"""
     randarr = []
