@@ -3,18 +3,18 @@ module.exports = {
   bubbleSort(language){
     if(language === 'javascript'){
       return `function bubbleSort(arr) {
-        var len = arr.length;
-        for (var i = len-1; i>=0; i--){
-          for(var j = 1; j<=i; j++){
-            if(arr[j-1]>arr[j]){
-              var temp = arr[j-1];
-              arr[j-1] = arr[j];
-              arr[j] = temp;
-            }
+      var len = arr.length;
+      for (var i = len-1; i>=0; i--){
+        for(var j = 1; j<=i; j++){
+          if(arr[j-1]>arr[j]){
+            var temp = arr[j-1];
+            arr[j-1] = arr[j];
+            arr[j] = temp;
           }
         }
-        return arr;
-      }`;
+      }
+      return arr;
+    }`;
     }
     if(language === 'python'){
       return `def bubble_sort(arr, done=False):
@@ -25,6 +25,21 @@ module.exports = {
                 arr[idx], arr[idx+1] = arr[idx+1], arr[idx]
                 done = False
     return arr`
+    }
+    if(language === 'ruby'){
+      return `def bubble_sort(arr)
+      sorted = false
+      until sorted
+        sorted = true
+        arr.each_with_index do |n, idx|
+          next if idx == 0
+          if arr[idx] < arr[idx - 1]
+            arr[idx], arr[idx -1] = arr[idx -1], arr[idx]
+            sorted = false
+          end
+        end
+      end
+    end`
     }
   },
 
@@ -60,6 +75,9 @@ module.exports = {
         if n > pivot: right.append(n)
         if n == pivot: piv.append(n)
     return quick_sort(left) + piv + quick_sort(right)`
+    }
+    if(language === 'ruby'){
+
     }
   },
 
@@ -151,6 +169,9 @@ module.exports = {
         last -= 1
         step(1)`;
     }
+    if(language === 'ruby'){
+
+    }
   },
 
   radixSort(language){
@@ -213,6 +234,36 @@ module.exports = {
             idx[i] -= 1
         iter += 1`;
     }
+    if(language === 'ruby'){
+      return `def radix_sort(arr)
+      iter = 0
+      max = 1
+      while iter <= max
+        index = [-1] + [0] * 18
+        arr.each do |n|
+          if iter == 0 && n != 0
+            m = Integer(Math.log10(n.abs))
+            max = m if m > max
+          end
+          radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
+          index[radix + 9] += 1
+        end
+
+        (1..18).each { |i| index[i] += index[i - 1] }
+
+        sorted = Array.new(arr.length, nil)
+        (arr.length - 1).downto(0) do |num|
+          n = arr[num]
+          radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
+          idx = index[radix + 9]
+          index[radix + 9] -= 1
+          sorted[idx] = n
+        end
+        iter += 1
+        arr = sorted
+      end
+    end`
+    }
   },
 
   countingSort(language){
@@ -249,6 +300,25 @@ module.exports = {
     for n in range(min, max + 1):
         for _ in range(map[n]):
             sorted.append(n)`;
+    }
+    if(language === 'ruby'){
+      return `def counting_sort(arr)
+      map = Hash.new(0)
+      min, max = arr[0], arr[0]
+      arr.each do |n|
+        map[n] += 1;
+        min = n if n < min
+        max = n if n > max
+      end
+      idx = 0
+      (min..max).each do |n|
+        map[n].times do
+          arr[idx] = n
+          idx += 1
+        end
+      end
+      p arr
+    end`
     }
   },
 
@@ -301,18 +371,42 @@ module.exports = {
             merged.append(merge(arr[i], arr[i+1]))
         arr = merged`;
     }
+    if(language === 'ruby'){
+      return `def merge_sort(arr)
+      arr.map! { |n| [n] }
+      while arr.length > 1
+        sorted = []
+        arr.each_with_index do |a1, idx|
+          next if idx % 2 == 1
+          a2 = arr[idx + 1] || []
+          temp = []
+          until a2.length == 0 || a1.length == 0
+            array = a1[0] < a2[0] ? a1 : a2
+            temp << array.shift
+          end
+          sorted << temp + a1 + a2
+        end
+        arr = sorted
+      end
+    end`
+    }
   },
 
   jsSort(language){
     if(language === 'javascript'){
       return `function jsSort(arr){
-        arr.sort((a,b) => a-b);
-      }`;
+      arr.sort((a,b) => a-b);
+    }`;
     }
     if(language === 'python'){
       return `def python_sort(arr):
     arr.sort()`;
     }
+  }
+  if(language === 'ruby'){
+      return`def ruby_sort(arr)
+      arr.sort
+    end`
   }
 
 };
