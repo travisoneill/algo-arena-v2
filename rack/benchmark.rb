@@ -210,9 +210,74 @@ def counting_sort(arr)
 end
 
 def heap_sort(arr)
+	1.upto(arr.length - 1) do |i|
+		child = i
+		while child > 0
+			parent = (child - 1) / 2
+			if arr[parent] < arr[child]
+				arr[parent], arr[child] = arr[child], arr[parent]
+				child = parent
+			else
+				break
+			end
+		end
+	end
 
+	i = arr.length - 1
+	while i > 0
+		arr[0], arr[i] = arr[i], arr[0]
+		i -= 1
+		parent = 0
+		while parent * 2 + 1 <= i
+			child = parent * 2 + 1
+			if child < i && arr[child] < arr[child + 1]
+				child += 1
+			end
+			if arr[parent] < arr[child]
+				arr[parent], arr[child] = arr[child], arr[parent]
+				parent = child
+			else
+				break
+			end
+		end
+	end
 end
 
+def quick_sort(arr, from=0, to=nil)
+  if to == nil
+    to = arr.count - 1
+  end
+  if from >= to
+    return
+  end
+  pivot = arr[from]
+  min = from
+  max = to
+  free = min
+
+  while min < max
+    if free == min
+      if arr[max] <= pivot
+        arr[free] = arr[max]
+        min += 1
+        free = max
+      else
+        max -= 1
+      end
+    elsif free == max
+      if arr[min] >= pivot
+        arr[free] = arr[min]
+        max -= 1
+        free = min
+      else
+        min += 1
+      end
+    end
+  end
+  arr[free] = pivot
+  quick_sort(arr, from, free - 1)
+  quick_sort(arr, free + 1, to)
+end
 
 
 if __FILE__ == $0
