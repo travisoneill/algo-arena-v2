@@ -1,7 +1,7 @@
 require 'json'
 require_relative './benchmark.rb'
 
-class Hello
+class App
   def call(env)
     req = Rack::Request.new(env)
     case req.path_info
@@ -21,4 +21,4 @@ class Hello
   end
 end
 
-run Hello.new
+run App.new
