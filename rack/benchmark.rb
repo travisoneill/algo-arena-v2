@@ -98,6 +98,32 @@ def rs
 end}
 end
 
+def r
+%{def ruby_sort(arr)
+  arr.sort
+end}
+end
+
+def cs
+%{def counting_sort(arr)
+  map = Hash.new(0)
+  min, max = arr[0], arr[0]
+  arr.each do |n|
+    map[n] += 1;
+    min = n if n < min
+    max = n if n > max
+  end
+  idx = 0
+  (min..max).each do |n|
+    map[n].times do
+      arr[idx] = n
+      idx += 1
+    end
+  end
+  p arr
+end}
+end
+
 def bubble_sort(arr)
   sorted = false
   until sorted
@@ -160,6 +186,34 @@ def radix_sort(arr)
     arr = sorted
   end
 end
+
+def ruby_sort(arr)
+  arr.sort
+end
+
+def counting_sort(arr)
+  map = Hash.new(0)
+  min, max = arr[0], arr[0]
+  arr.each do |n|
+    map[n] += 1;
+    min = n if n < min
+    max = n if n > max
+  end
+  idx = 0
+  (min..max).each do |n|
+    map[n].times do
+      arr[idx] = n
+      idx += 1
+    end
+  end
+  p arr
+end
+
+def heap_sort(arr)
+
+end
+
+
 
 if __FILE__ == $0
   puts "RUBY BENCHMARK CLI"
