@@ -173,7 +173,7 @@ module.exports = {
     last = last or len(arr)-1
     def value(idx):
         if idx <= last: return arr[idx]
-        else: return -inf
+        else: return -float('inf')
     def left(idx):
         return 2 * idx + 1
     def right(idx):
