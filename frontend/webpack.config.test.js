@@ -8,7 +8,7 @@ module.exports = {
   devtool: isProd ? 'hidden-source-map' : 'cheap-eval-source-map',
   context: path.join(__dirname, './'),
   entry: {
-    js: './main.jsx',
+    js: './redux_main.jsx',
   },
   output: {
     path: path.join(__dirname, './static/assets/'),

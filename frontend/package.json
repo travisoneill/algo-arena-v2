@@ -5,7 +5,7 @@
     "node": "6.5.0"
   },
   "description": "",
-  "main": "main.jsx",
+  "main": "redux_main.jsx",
   "scripts": {
     "webpack_watch": "webpack --watch",
     "webpack_deploy": "webpack --config webpack_deploy.config.js --progress -p",
@@ -25,15 +25,18 @@
     "babel-runtime": "^6.6.1",
     "body-parser": "^1.15.2",
     "css-loader": "^0.23.1",
-    "file-loader": "^0.8.5",
-    "style-loader": "^0.13.0",
     "d3": "^4.2.2",
     "express": "^4.14.0",
+    "file-loader": "^0.8.5",
     "flux": "^2.1.1",
-    "react": "^15.2.1",
+    "react": "^15.3.2",
     "react-dom": "^15.2.1",
     "react-modal": "^1.4.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
     "react-tooltip": "^3.0.13",
+    "redux-logger": "^2.6.1",
+    "style-loader": "^0.13.0",
     "webpack": "^2.1.0-beta.4"
   }
 }

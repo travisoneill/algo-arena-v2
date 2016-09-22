@@ -1,6 +1,6 @@
 module.exports = {
   context: __dirname,
-  entry: "./main.jsx",
+  entry: "./redux_main.jsx",
   output: {
     path: "./assets/",
     filename: "bundle.js"
@@ -17,8 +17,15 @@ module.exports = {
       }
     ]
   },
+  stats: {
+            colors: true,
+            modules: true,
+            reasons: true,
+            errorDetails: true
+          },
+  devtool: 'source-maps',
+
   resolve: {
     extensions: ["", ".js", ".jsx"]
-  },
-  devtool: 'source-map',
+  }
 };
