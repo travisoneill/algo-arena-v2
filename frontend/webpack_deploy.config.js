@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 module.exports = {
   context: __dirname,
-  entry: "./main.jsx",
+  entry: "./redux_main.jsx",
   output: {
     path: "./assets/deploy/",
     filename: "bundle.js"
