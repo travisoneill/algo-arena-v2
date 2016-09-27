@@ -159,7 +159,7 @@ const ControlPanel = React.createClass({
           <button
             className='demo-sort' id='jsSort'
             data-tip data-for='jsSort'
-            onClick={this.demoSort}>JS Library Sort</button>
+            onClick={this.demoSort}>Library Sort</button>
           <button
             className='demo-sort' id='bubbleSort'
             data-tip data-for='bubbleSort'

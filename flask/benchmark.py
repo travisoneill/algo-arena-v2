@@ -11,10 +11,8 @@ def handle_request(int_array, request_data):
     """Takes code string and converts to function object to be passed into
     'run_test.' Called from server."""
     code = request_data['method']
-    # print(code)
     exec(code)
     test_function = locals()[request_data['name']]
-    # print(test_function)
     test_results = run_test(int_array, test_function)
     print(test_results)
     return test_results
@@ -24,8 +22,6 @@ def run_test(int_array, test_function, iterations=1):
     called from 'handle_request'"""
     results = []
     for n in int_array:
-        # print(n)
-        # print(results)
         data = benchmark(test_function, n, iterations)
         results.append({"x": n, "y": data['avg']})
     return results

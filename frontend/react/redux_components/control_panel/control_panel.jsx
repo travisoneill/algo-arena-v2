@@ -166,7 +166,7 @@ class ControlPanel extends React.Component{
           <button
             className='demo-sort' id='jsSort'
             data-tip data-for='jsSort'
-            onClick={this.demoSort}>JS Library Sort</button>
+            onClick={this.demoSort}>Library Sort</button>
           <button
             className='demo-sort' id='bubbleSort'
             data-tip data-for='bubbleSort'
@@ -174,11 +174,11 @@ class ControlPanel extends React.Component{
           <button
             className='demo-sort' id='quickSortRec'
             data-tip data-for='quickSortRec'
-            onClick={this.demoSort}>Quick Sort (rec)</button>
+            onClick={this.demoSort}>Quick Sort</button>
           <button
             className='demo-sort' id='mergeSortIter'
             data-tip data-for='mergeSortIter'
-            onClick={this.demoSort}>Merge Sort (iter)</button>
+            onClick={this.demoSort}>Merge Sort</button>
           <button
             className='demo-sort' id='radixSort'
             onClick={this.demoSort}
