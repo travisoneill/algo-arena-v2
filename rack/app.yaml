@@ -1,0 +1,5 @@
+untime: ruby
+vm: true
+entrypoint: rackup config.ru
+manual_scaling:
+  instances: 1
