@@ -1,11 +1,10 @@
 {
   "name": "algo-arena-benchmark",
   "version": "1.0.0",
-  "description": "description",
+  "description": "",
   "engines": {
     "node": "6.2.1"
   },
-  "description": "",
   "main": "node_server.js",
   "scripts": {
     "start": "node node_server.js",
@@ -18,6 +17,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "promise": "^7.1.1"
   }
 }

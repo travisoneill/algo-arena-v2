@@ -8,10 +8,10 @@ const BodyParser = require('body-parser');
 
 Server.use(BodyParser.json());
 
-// Server.get('/', function(req, res){
-//   console.log("Hello.  Node Server is running");
-//   res.send("Hello.  Node Server is running");
-// });
+Server.get('/', function(req, res){
+  console.log("Hello.  Node Server is running");
+  res.send("Hello.  Node Server is running");
+});
 //
 // Server.get('/test', function(req, res){
 //   console.log("Hello.  Node Server is running");
