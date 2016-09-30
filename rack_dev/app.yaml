@@ -1,4 +1,5 @@
 runtime: ruby
+service: rack
 vm: true
 entrypoint: rackup config.ru
 manual_scaling:
