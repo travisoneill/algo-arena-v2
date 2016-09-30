@@ -1,4 +1,4 @@
-untime: ruby
+runtime: ruby
 vm: true
 entrypoint: rackup config.ru
 manual_scaling:
