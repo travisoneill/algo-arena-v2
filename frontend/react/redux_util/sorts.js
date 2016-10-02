@@ -3,18 +3,18 @@ export const Sorts =  {
   bubbleSort(language){
     if(language === 'javascript'){
       return `function bubbleSort(arr) {
-      var len = arr.length;
-      for (var i = len-1; i>=0; i--){
-        for(var j = 1; j<=i; j++){
-          if(arr[j-1]>arr[j]){
-            var temp = arr[j-1];
-            arr[j-1] = arr[j];
-            arr[j] = temp;
-          }
-        }
+  var len = arr.length;
+  for (var i = len-1; i>=0; i--){
+    for(var j = 1; j<=i; j++){
+      if(arr[j-1]>arr[j]){
+        var temp = arr[j-1];
+        arr[j-1] = arr[j];
+        arr[j] = temp;
       }
-      return arr;
-    }`;
+    }
+  }
+  return arr;
+}`;
     }
     if(language === 'python'){
       return `def bubble_sort(arr, done=False):
@@ -28,42 +28,42 @@ export const Sorts =  {
     }
     if(language === 'ruby'){
       return `def bubble_sort(arr)
-      sorted = false
-      until sorted
-        sorted = true
-        arr.each_with_index do |n, idx|
-          next if idx == 0
-          if arr[idx] < arr[idx - 1]
-            arr[idx], arr[idx -1] = arr[idx -1], arr[idx]
-            sorted = false
-          end
-        end
+  sorted = false
+  until sorted
+    sorted = true
+    arr.each_with_index do |n, idx|
+      next if idx == 0
+      if arr[idx] < arr[idx - 1]
+        arr[idx], arr[idx -1] = arr[idx -1], arr[idx]
+        sorted = false
       end
-    end`
+    end
+  end
+end`
     }
   },
 
   quickSortRec(language){
     if(language === 'javascript'){
       return `function quickSort(arr) {
-        if (arr.length <= 1) {
-          return arr;
-        }
+  if (arr.length <= 1) {
+    return arr;
+  }
 
-        var pivot = arr[0];
-        var left = [];
-        var right = [];
+  var pivot = arr[0];
+  var left = [];
+  var right = [];
 
-        for (var i = 1; i < arr.length; i++) {
-          if (arr[i] < pivot) {
-            left.push(arr[i]);
-          } else {
-            right.push(arr[i]);
-          }
-        }
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
 
-        return this.quickSort(left).concat([pivot]).concat(this.quickSort(right));
-      }`;
+  return this.quickSort(left).concat([pivot]).concat(this.quickSort(right));
+}`;
     }
     if(language === 'python'){
       return `def quick_sort(arr):
@@ -78,95 +78,95 @@ export const Sorts =  {
     }
     if(language === 'ruby'){
       return `def quick_sort(arr, from=0, to=nil)
-      if to == nil
-        to = arr.count - 1
-      end
-      if from >= to
-        return
-      end
-      pivot = arr[from]
-      min = from
-      max = to
-      free = min
+  if to == nil
+    to = arr.count - 1
+  end
+  if from >= to
+    return
+  end
+  pivot = arr[from]
+  min = from
+  max = to
+  free = min
 
-      while min < max
-        if free == min
-          if arr[max] <= pivot
-            arr[free] = arr[max]
-            min += 1
-            free = max
-          else
-            max -= 1
-          end
-        elsif free == max
-          if arr[min] >= pivot
-            arr[free] = arr[min]
-            max -= 1
-            free = min
-          else
-            min += 1
-          end
-        end
+  while min < max
+    if free == min
+      if arr[max] <= pivot
+        arr[free] = arr[max]
+        min += 1
+        free = max
+      else
+        max -= 1
       end
-      arr[free] = pivot
-      quick_sort(arr, from, free - 1)
-      quick_sort(arr, free + 1, to)
-    end`
+    elsif free == max
+      if arr[min] >= pivot
+        arr[free] = arr[min]
+        max -= 1
+        free = min
+      else
+        min += 1
+      end
+    end
+  end
+  arr[free] = pivot
+  quick_sort(arr, from, free - 1)
+  quick_sort(arr, free + 1, to)
+end`
     }
   },
 
   heapSort(language){
     if(language === 'javascript'){
       return `function heapSort(arr){
-      let last = arr.length - 1;
-      function parent(idx){
-        if(idx > 0 && idx <= last){return ~~((idx -1) / 2);}
-      }
-      function children(idx){
-        let children = {l: undefined, r: undefined}
-        if(2 * idx + 1 <= last){children.l = 2 * idx + 1;}
-        if(2 * idx + 2 <= last){children.r = 2 * idx + 2;}
-        return children
-      }
-      function swap(idx1, idx2){
-        let temp = arr[idx1];
-        arr[idx1] = arr[idx2];
-        arr[idx2] = temp;
-      }
-      function pair(idx){
-        if(idx < 1){return undefined}
-        return children(parent(idx));
-      }
+  let last = arr.length - 1;
+  function parent(idx){
+    if(idx > 0 && idx <= last){return ~~((idx -1) / 2);}
+  }
+  function children(idx){
+    let children = {l: undefined, r: undefined}
+    if(2 * idx + 1 <= last){children.l = 2 * idx + 1;}
+    if(2 * idx + 2 <= last){children.r = 2 * idx + 2;}
+    return children
+  }
+  function swap(idx1, idx2){
+    let temp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = temp;
+  }
+  function pair(idx){
+    if(idx < 1){return undefined}
+    return children(parent(idx));
+  }
 
-      function heapStep(idx){
-        let l = pair(idx).l;
-        let r = pair(idx).r;
-        let par = parent(idx);
-        let max = arr[l];
-        let maxi = l;
-        if(r && l && arr[r] > arr[l]){
-          max = arr[r];
-          maxi = r;
-        }
-        if(max > arr[par]){swap(maxi, par);}
-        if(children(maxi).l){heapStep(children(maxi).l);}
-      }
+  function heapStep(idx){
+    let l = pair(idx).l;
+    let r = pair(idx).r;
+    let par = parent(idx);
+    let max = arr[l];
+    let maxi = l;
+    if(r && l && arr[r] > arr[l]){
+      max = arr[r];
+      maxi = r;
+    }
+    if(max > arr[par]){swap(maxi, par);}
+    if(children(maxi).l){heapStep(children(maxi).l);}
+  }
 
-      function makeHeap(n){
-        for (let i = n; i > 0; i-=2) {
-          last = n;
-          heapStep(i);
-        }
-      }
+  function makeHeap(n){
+    for (let i = n; i > 0; i-=2) {
+      last = n;
+      heapStep(i);
+    }
+  }
 
-      makeHeap(last)
+  makeHeap(last)
 
-      for (let i = last; i > 0; i--) {
-        swap(0, i);
-        last--;
-        heapStep(1);
-      }
-    }`;
+  for (let i = last; i > 0; i--) {
+    swap(0, i);
+    last--;
+    heapStep(1);
+  }
+}`;
     }
     if(language === 'python'){
       return `def heap_sort(arr, last=None):
@@ -205,75 +205,75 @@ export const Sorts =  {
     }
     if(language === 'ruby'){
       return `def heap_sort(arr)
-      1.upto(arr.length - 1) do |i|
-        child = i
-        while child > 0
-          parent = (child - 1) / 2
-          if arr[parent] < arr[child]
-            arr[parent], arr[child] = arr[child], arr[parent]
-            child = parent
-          else
-            break
-          end
-        end
+  1.upto(arr.length - 1) do |i|
+    child = i
+    while child > 0
+      parent = (child - 1) / 2
+      if arr[parent] < arr[child]
+        arr[parent], arr[child] = arr[child], arr[parent]
+        child = parent
+      else
+        break
       end
+    end
+  end
 
-      i = arr.length - 1
-      while i > 0
-        arr[0], arr[i] = arr[i], arr[0]
-        i -= 1
-        parent = 0
-        while parent * 2 + 1 <= i
-          child = parent * 2 + 1
-          if child < i && arr[child] < arr[child + 1]
-            child += 1
-          end
-          if arr[parent] < arr[child]
-            arr[parent], arr[child] = arr[child], arr[parent]
-            parent = child
-          else
-            break
-          end
-        end
+  i = arr.length - 1
+  while i > 0
+    arr[0], arr[i] = arr[i], arr[0]
+    i -= 1
+    parent = 0
+    while parent * 2 + 1 <= i
+      child = parent * 2 + 1
+      if child < i && arr[child] < arr[child + 1]
+        child += 1
       end
-    end`
+      if arr[parent] < arr[child]
+        arr[parent], arr[child] = arr[child], arr[parent]
+        parent = child
+      else
+        break
+      end
+    end
+  end
+end`
     }
   },
 
   radixSort(language){
     if(language === 'javascript'){
       return `function radixSort(arr){
-        let iter = 0;
-        function step(a, n){
-          let max = a[0];
-          let indexArr = [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-          for (let i = 0; i < a.length; i++) {
-            if(n === 0 && Math.abs(a[i]) > max){max = Math.abs(a[i]);}
-            let dig = ~~( (a[i] / Math.pow(10, n)) % 10);
-            indexArr[dig + 9] += 1;
-          }
+  let iter = 0;
+  function step(a, n){
+    let max = a[0];
+    let indexArr = [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    for (let i = 0; i < a.length; i++) {
+      if(n === 0 && Math.abs(a[i]) > max){max = Math.abs(a[i]);}
+      let dig = ~~( (a[i] / Math.pow(10, n)) % 10);
+      indexArr[dig + 9] += 1;
+    }
 
-          if(n === 0){ iter = ~~(Math.log10(max));}
+    if(n === 0){ iter = ~~(Math.log10(max));}
 
-          for (let i = 1; i < indexArr.length; i++) {
-            indexArr[i] += indexArr[i-1];
-          }
+    for (let i = 1; i < indexArr.length; i++) {
+      indexArr[i] += indexArr[i-1];
+    }
 
-          let sorted = [];
-          for (let i = a.length - 1; i >= 0; i--) {
-            let dig = ~~( (a[i] / Math.pow(10, n)) % 10);
-            let idx = indexArr[dig + 9];
-            sorted[idx] = a[i];
-            indexArr[dig + 9] -= 1;
-          }
-          return sorted;
-        }
+    let sorted = [];
+    for (let i = a.length - 1; i >= 0; i--) {
+      let dig = ~~( (a[i] / Math.pow(10, n)) % 10);
+      let idx = indexArr[dig + 9];
+      sorted[idx] = a[i];
+      indexArr[dig + 9] -= 1;
+    }
+    return sorted;
+  }
 
-        for (let i = 0; i <= iter; i++) {
-          arr = step(arr, i);
-        }
-        return arr;
-      }`;
+  for (let i = 0; i <= iter; i++) {
+    arr = step(arr, i);
+  }
+  return arr;
+}`;
     }
     if(language === 'python'){
       return `def radix_sort(arr):
@@ -302,57 +302,57 @@ export const Sorts =  {
     }
     if(language === 'ruby'){
       return `def radix_sort(arr)
-      iter = 0
-      max = 1
-      while iter <= max
-        index = [-1] + [0] * 18
-        arr.each do |n|
-          if iter == 0 && n != 0
-            m = Integer(Math.log10(n.abs))
-            max = m if m > max
-          end
-          radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
-          index[radix + 9] += 1
-        end
-
-        (1..18).each { |i| index[i] += index[i - 1] }
-
-        sorted = Array.new(arr.length, nil)
-        (arr.length - 1).downto(0) do |num|
-          n = arr[num]
-          radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
-          idx = index[radix + 9]
-          index[radix + 9] -= 1
-          sorted[idx] = n
-        end
-        iter += 1
-        arr = sorted
+  iter = 0
+  max = 1
+  while iter <= max
+    index = [-1] + [0] * 18
+    arr.each do |n|
+      if iter == 0 && n != 0
+        m = Integer(Math.log10(n.abs))
+        max = m if m > max
       end
-    end`
+      radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
+      index[radix + 9] += 1
+    end
+
+    (1..18).each { |i| index[i] += index[i - 1] }
+
+    sorted = Array.new(arr.length, nil)
+    (arr.length - 1).downto(0) do |num|
+      n = arr[num]
+      radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
+      idx = index[radix + 9]
+      index[radix + 9] -= 1
+      sorted[idx] = n
+    end
+    iter += 1
+    arr = sorted
+  end
+end`
     }
   },
 
   countingSort(language){
     if(language === 'javascript'){
       return `function countingSort(arr){
-        let map = {};
-        let max = arr[0];
-        let min = arr[0]
-        for (var i = 0; i < arr.length; i++) {
-          if(arr[i] > max){max = arr[i];}
-          if(arr[i] < min){min = arr[i];}
-          if(map[arr[i]] > 0){map[arr[i]]++;} else {map[arr[i]] = 1;}
-        }
-        let idx = 0;
-        for (let i = min; i <= max; i++) {
-          if(map[i]){
-            for (let j = 0; j < map[i]; j++) {
-              arr[idx] = i;
-              idx++;
-            }
-          }
-        }
-      }`;
+  let map = {};
+  let max = arr[0];
+  let min = arr[0]
+  for (var i = 0; i < arr.length; i++) {
+    if(arr[i] > max){max = arr[i];}
+    if(arr[i] < min){min = arr[i];}
+    if(map[arr[i]] > 0){map[arr[i]]++;} else {map[arr[i]] = 1;}
+  }
+  let idx = 0;
+  for (let i = min; i <= max; i++) {
+    if(map[i]){
+      for (let j = 0; j < map[i]; j++) {
+        arr[idx] = i;
+        idx++;
+      }
+    }
+  }
+}`;
     }
     if(language === 'python'){
       return `def counting_sort(arr):
@@ -369,54 +369,54 @@ export const Sorts =  {
     }
     if(language === 'ruby'){
       return `def counting_sort(arr)
-      map = Hash.new(0)
-      min, max = arr[0], arr[0]
-      arr.each do |n|
-        map[n] += 1;
-        min = n if n < min
-        max = n if n > max
-      end
-      idx = 0
-      (min..max).each do |n|
-        map[n].times do
-          arr[idx] = n
-          idx += 1
-        end
-      end
-      p arr
-    end`
+  map = Hash.new(0)
+  min, max = arr[0], arr[0]
+  arr.each do |n|
+    map[n] += 1;
+    min = n if n < min
+    max = n if n > max
+  end
+  idx = 0
+  (min..max).each do |n|
+    map[n].times do
+      arr[idx] = n
+      idx += 1
+    end
+  end
+  p arr
+end`
     }
   },
 
   mergeSortIter(language){
     if(language === 'javascript'){
       return `function mergeSortIter(array){
-    for (let i = 0; i < array.length; i++) {
-      array[i] = [array[i]];
-    }
+  for (let i = 0; i < array.length; i++) {
+    array[i] = [array[i]];
+  }
 
-    let merge = function(arr1, arr2){
-      arr1 = arr1 || [];
-      arr2 = arr2 || [];
-      let merged = [];
-      while(arr1.length > 0 && arr2.length > 0){
-        if(arr1[0] < arr2[0]){merged.push(arr1.shift());}
-        else {merged.push(arr2.shift());}
-      }
-      return merged.concat(arr1, arr2)
+  let merge = function(arr1, arr2){
+    arr1 = arr1 || [];
+    arr2 = arr2 || [];
+    let merged = [];
+    while(arr1.length > 0 && arr2.length > 0){
+      if(arr1[0] < arr2[0]){merged.push(arr1.shift());}
+      else {merged.push(arr2.shift());}
     }
+    return merged.concat(arr1, arr2)
+  }
 
-    let merging = [];
-    while(array.length > 1){
-      merging = [];
-      for (let i = 0; i < array.length; i+=2) {
-        let j = i + 1
-        merging.push(merge(array[i], array[j]));
-      }
-      array = merging;
+  let merging = [];
+  while(array.length > 1){
+    merging = [];
+    for (let i = 0; i < array.length; i+=2) {
+      let j = i + 1
+      merging.push(merge(array[i], array[j]));
     }
-    return array;
-  }`;
+    array = merging;
+  }
+  return array;
+}`;
     }
     if(language === 'python'){
       return `def merge_sort_iter(arr):
@@ -439,30 +439,30 @@ export const Sorts =  {
     }
     if(language === 'ruby'){
       return `def merge_sort(arr)
-      arr.map! { |n| [n] }
-      while arr.length > 1
-        sorted = []
-        arr.each_with_index do |a1, idx|
-          next if idx % 2 == 1
-          a2 = arr[idx + 1] || []
-          temp = []
-          until a2.length == 0 || a1.length == 0
-            array = a1[0] < a2[0] ? a1 : a2
-            temp << array.shift
-          end
-          sorted << temp + a1 + a2
-        end
-        arr = sorted
+  arr.map! { |n| [n] }
+  while arr.length > 1
+    sorted = []
+    arr.each_with_index do |a1, idx|
+      next if idx % 2 == 1
+      a2 = arr[idx + 1] || []
+      temp = []
+      until a2.length == 0 || a1.length == 0
+        array = a1[0] < a2[0] ? a1 : a2
+        temp << array.shift
       end
-    end`
+      sorted << temp + a1 + a2
+    end
+    arr = sorted
+  end
+end`
     }
   },
 
   jsSort(language){
     if(language === 'javascript'){
       return `function jsSort(arr){
-      arr.sort((a,b) => a-b);
-    }`;
+  arr.sort((a,b) => a-b);
+}`;
     }
     if(language === 'python'){
       return `def python_sort(arr):
@@ -470,8 +470,8 @@ export const Sorts =  {
     }
     if(language === 'ruby'){
       return `def ruby_sort(arr)
-      arr.sort
-    end`
+  arr.sort
+end`
     }
   }
 
