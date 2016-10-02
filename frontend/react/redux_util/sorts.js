@@ -383,7 +383,6 @@ end`
       idx += 1
     end
   end
-  p arr
 end`
     }
   },
