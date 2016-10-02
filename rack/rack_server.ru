@@ -9,9 +9,13 @@ class App
       [200, {'Content-Type' => 'text/html'}, ['200 Hello World']]
     when /api\/algos/
       if req.post?
-        val = Benchmark.handle_request(req.params)
-        [200, {'Content-Type' => 'text/html'}, [val]]
-        [200, {'Content-Type' => 'text/html'}, ['working']]
+        incoming_data = JSON.parse(req.body.read)
+        lengthArr = incoming_data['lengthArr']
+        request_data = incoming_data['request_data']
+        name = incoming_data['request_data']['name']
+        val = handle_request(lengthArr, request_data)
+        response_data = {'xAxis': lengthArr, 'name': name, 'rawData': val}
+        [200, {'Content-Type' => 'text/html'}, [response_data.to_json]]
       else
         [500, {'Content-Type' => 'text/html'}, ["POST only at #{req.path_info}"]]
       end

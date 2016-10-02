@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, request, redirect, json, jsonify, send_from_directory
+from flask import Flask, request, json, jsonify, send_from_directory
 
 app = Flask(__name__, static_url_path='')
 

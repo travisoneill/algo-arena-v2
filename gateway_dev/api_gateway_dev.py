@@ -60,9 +60,8 @@ def send():
         # print('JSON')
         # print(json.dumps(outgoing_data))
         res = requests.post(request_url, data=json.dumps(outgoing_data), headers=headers)
-        final_data[key] =  json.loads(res.content)
+        final_data[key] = json.loads(res.content)
         print(final_data)
-        print(jsonify(final_data))
     return jsonify(final_data)
 
 if __name__  == "__main__":

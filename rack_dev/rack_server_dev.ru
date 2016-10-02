@@ -16,10 +16,10 @@ class App
         #   .sort
         #   .flatten]
         # p headers
-        req_data = JSON.parse(req.body.read)
-        lengthArr = req_data['lengthArr']
-        request_data = req_data['request_data']
-        name = req_data['request_data']['name']
+        incoming_data = JSON.parse(req.body.read)
+        lengthArr = incoming_data['lengthArr']
+        request_data = incoming_data['request_data']
+        name = incoming_data['request_data']['name']
         val = handle_request(lengthArr, request_data)
         response_data = {'xAxis': lengthArr, 'name': name, 'rawData': val}
         p response_data
