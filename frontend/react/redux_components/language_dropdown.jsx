@@ -16,8 +16,8 @@ class LanguageDropdown extends React.Component {
   }
 
   render(){
-    const languages = ['javascript', 'python'];
-    const langText = ['JavaScript', 'Python'];
+    const languages = ['javascript', 'python', 'ruby'];
+    const langText = ['JavaScript', 'Python', 'Ruby'];
     const act = this.props.action;
     const el = document.getElementById(`editor-${this.props.n}`);
     const selected = ace.edit(el).getSession().getMode().$id.match(/\w*$/)[0];

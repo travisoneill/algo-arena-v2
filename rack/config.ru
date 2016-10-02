@@ -9,8 +9,8 @@ class App
       [200, {'Content-Type' => 'text/html'}, ['200 Hello World']]
     when /api\/algos/
       if req.post?
-        # val = Benchmark.handle_request()
-        # [200, {'Content-Type' => 'text/html'}, [val]]
+        val = Benchmark.handle_request(req.params)
+        [200, {'Content-Type' => 'text/html'}, [val]]
         [200, {'Content-Type' => 'text/html'}, ['working']]
       else
         [500, {'Content-Type' => 'text/html'}, ["POST only at #{req.path_info}"]]

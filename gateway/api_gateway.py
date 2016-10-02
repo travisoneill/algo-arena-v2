@@ -16,11 +16,13 @@ def root():
 def send():
     urls = {
         'flask': 'https://flask-dot-algorithm-arena.appspot.com',
-        'node': 'https://express-dot-algorithm-arena.appspot.com'
+        'node': 'https://express-dot-algorithm-arena.appspot.com',
+        'rack': 'https://rack-dot-algorithm-arena.appspot.com'
     }
     services = {
         'javascript': 'node',
-        'python': 'flask'
+        'python': 'flask',
+        'ruby': 'rack'
     }
 
     incoming_data = request.get_json()

@@ -13,6 +13,9 @@ pip install -r requirements.txt
 deactivate
 cd ../node_dev
 npm install
+cd ../rack_dev
+gem install bundler
+bundle install
 cd ../frontend
 npm install
 cd ..

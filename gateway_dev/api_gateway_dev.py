@@ -4,12 +4,14 @@ from flask import Flask, request, redirect, json, jsonify
 ports = {
     'node': "8001",
     'flask': "8002",
-    'static': "8003"
+    'static': "8003",
+    'rack': "8004"
 }
 
 services = {
     'javascript': 'node',
-    'python': 'flask'
+    'python': 'flask',
+    'ruby': 'rack'
 }
 
 app = Flask(__name__)
@@ -60,46 +62,6 @@ def send():
         final_data[key] =  json.loads(res.content)
         print(jsonify(final_data))
     return jsonify(final_data)
-
-# @app.route('/api/algos', methods=['POST'])
-# def send():
-#     data = request.json
-#     servers = {}
-#     responses = []
-#     for service, server in services.items():
-#         servers[server] = False
-#
-#     print('servers', servers)
-#
-#     for key, params in data.items():
-#         if key[0:4] == 'data':
-#             language = params['language']
-#             server = services[language]
-#             servers[server] = True
-#
-#     print('servers', servers)
-#
-#     for server, send_status in servers.items():
-#         if send_status == True:
-#             url = 'http://localhost:' + ports[server] + request.path
-#             res = requests.post(url, data)
-#             responses.append(res)
-#             print(responses)
-#
-#     print(request.json['data1'])
-#     return "REDIRECTED"
-
-
-# def parse_dictionary(dictionary):
-#     print('DICTIONARY')
-#     print(dictionary)
-#     print(json.dumps(dictionary))
-#     return dictionary
-
-
-
-#gunicorn
-#tornado
 
 if __name__  == "__main__":
     app.run()

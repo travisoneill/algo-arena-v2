@@ -3,18 +3,18 @@ export const Sorts =  {
   bubbleSort(language){
     if(language === 'javascript'){
       return `function bubbleSort(arr) {
-        var len = arr.length;
-        for (var i = len-1; i>=0; i--){
-          for(var j = 1; j<=i; j++){
-            if(arr[j-1]>arr[j]){
-              var temp = arr[j-1];
-              arr[j-1] = arr[j];
-              arr[j] = temp;
-            }
+      var len = arr.length;
+      for (var i = len-1; i>=0; i--){
+        for(var j = 1; j<=i; j++){
+          if(arr[j-1]>arr[j]){
+            var temp = arr[j-1];
+            arr[j-1] = arr[j];
+            arr[j] = temp;
           }
         }
-        return arr;
-      }`;
+      }
+      return arr;
+    }`;
     }
     if(language === 'python'){
       return `def bubble_sort(arr, done=False):
@@ -24,7 +24,22 @@ export const Sorts =  {
             if num > arr[idx+1]:
                 arr[idx], arr[idx+1] = arr[idx+1], arr[idx]
                 done = False
-    return arr`;
+    return arr`
+    }
+    if(language === 'ruby'){
+      return `def bubble_sort(arr)
+      sorted = false
+      until sorted
+        sorted = true
+        arr.each_with_index do |n, idx|
+          next if idx == 0
+          if arr[idx] < arr[idx - 1]
+            arr[idx], arr[idx -1] = arr[idx -1], arr[idx]
+            sorted = false
+          end
+        end
+      end
+    end`
     }
   },
 
@@ -59,62 +74,99 @@ export const Sorts =  {
         if n < pivot: left.append(n)
         if n > pivot: right.append(n)
         if n == pivot: piv.append(n)
-    return quick_sort(left) + piv + quick_sort(right)`;
+    return quick_sort(left) + piv + quick_sort(right)`
+    }
+    if(language === 'ruby'){
+      return `def quick_sort(arr, from=0, to=nil)
+      if to == nil
+        to = arr.count - 1
+      end
+      if from >= to
+        return
+      end
+      pivot = arr[from]
+      min = from
+      max = to
+      free = min
+
+      while min < max
+        if free == min
+          if arr[max] <= pivot
+            arr[free] = arr[max]
+            min += 1
+            free = max
+          else
+            max -= 1
+          end
+        elsif free == max
+          if arr[min] >= pivot
+            arr[free] = arr[min]
+            max -= 1
+            free = min
+          else
+            min += 1
+          end
+        end
+      end
+      arr[free] = pivot
+      quick_sort(arr, from, free - 1)
+      quick_sort(arr, free + 1, to)
+    end`
     }
   },
 
   heapSort(language){
     if(language === 'javascript'){
       return `function heapSort(arr){
-        let last = arr.length - 1;
-        function parent(idx){
-          if(idx > 0 && idx <= last){return ~~((idx -1) / 2);}
-        }
-        function children(idx){
-          let children = {l: undefined, r: undefined}
-          if(2 * idx + 1 <= last){children.l = 2 * idx + 1;}
-          if(2 * idx + 2 <= last){children.r = 2 * idx + 2;}
-          return children
-        }
-        function swap(idx1, idx2){
-          let temp = arr[idx1];
-          arr[idx1] = arr[idx2];
-          arr[idx2] = temp;
-        }
-        function pair(idx){
-          if(idx < 1){return undefined}
-          return children(parent(idx));
-        }
+      let last = arr.length - 1;
+      function parent(idx){
+        if(idx > 0 && idx <= last){return ~~((idx -1) / 2);}
+      }
+      function children(idx){
+        let children = {l: undefined, r: undefined}
+        if(2 * idx + 1 <= last){children.l = 2 * idx + 1;}
+        if(2 * idx + 2 <= last){children.r = 2 * idx + 2;}
+        return children
+      }
+      function swap(idx1, idx2){
+        let temp = arr[idx1];
+        arr[idx1] = arr[idx2];
+        arr[idx2] = temp;
+      }
+      function pair(idx){
+        if(idx < 1){return undefined}
+        return children(parent(idx));
+      }
 
-        function heapStep(idx){
-          let l = pair(idx).l;
-          let r = pair(idx).r;
-          let par = parent(idx);
-          let max = arr[l];
-          let maxi = l;
-          if(r && l && arr[r] > arr[l]){
-            max = arr[r];
-            maxi = r;
-          }
-          if(max > arr[par]){swap(maxi, par);}
-          if(children(maxi).l){heapStep(children(maxi).l);}
+      function heapStep(idx){
+        let l = pair(idx).l;
+        let r = pair(idx).r;
+        let par = parent(idx);
+        let max = arr[l];
+        let maxi = l;
+        if(r && l && arr[r] > arr[l]){
+          max = arr[r];
+          maxi = r;
         }
+        if(max > arr[par]){swap(maxi, par);}
+        if(children(maxi).l){heapStep(children(maxi).l);}
+      }
 
-        function makeHeap(n){
-          for (let i = n; i > 0; i-=2) {
-            last = n;
-            heapStep(i);
-          }
+      function makeHeap(n){
+        for (let i = n; i > 0; i-=2) {
+          last = n;
+          heapStep(i);
         }
+      }
 
-        makeHeap(last)
+      makeHeap(last)
 
-        for (let i = last; i > 0; i--) {
-          swap(0, i);
-          last--;
-          heapStep(1);
-        }
-      }`;
+      for (let i = last; i > 0; i--) {
+        swap(0, i);
+        last--;
+        heapStep(1);
+      }
+    }`;
     }
     if(language === 'python'){
       return `def heap_sort(arr, last=None):
@@ -150,6 +202,41 @@ export const Sorts =  {
         swap(last, 0)
         last -= 1
         step(1)`;
+    }
+    if(language === 'ruby'){
+      return `def heap_sort(arr)
+      1.upto(arr.length - 1) do |i|
+        child = i
+        while child > 0
+          parent = (child - 1) / 2
+          if arr[parent] < arr[child]
+            arr[parent], arr[child] = arr[child], arr[parent]
+            child = parent
+          else
+            break
+          end
+        end
+      end
+
+      i = arr.length - 1
+      while i > 0
+        arr[0], arr[i] = arr[i], arr[0]
+        i -= 1
+        parent = 0
+        while parent * 2 + 1 <= i
+          child = parent * 2 + 1
+          if child < i && arr[child] < arr[child + 1]
+            child += 1
+          end
+          if arr[parent] < arr[child]
+            arr[parent], arr[child] = arr[child], arr[parent]
+            parent = child
+          else
+            break
+          end
+        end
+      end
+    end`
     }
   },
 
@@ -213,6 +300,36 @@ export const Sorts =  {
             idx[i] -= 1
         iter += 1`;
     }
+    if(language === 'ruby'){
+      return `def radix_sort(arr)
+      iter = 0
+      max = 1
+      while iter <= max
+        index = [-1] + [0] * 18
+        arr.each do |n|
+          if iter == 0 && n != 0
+            m = Integer(Math.log10(n.abs))
+            max = m if m > max
+          end
+          radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
+          index[radix + 9] += 1
+        end
+
+        (1..18).each { |i| index[i] += index[i - 1] }
+
+        sorted = Array.new(arr.length, nil)
+        (arr.length - 1).downto(0) do |num|
+          n = arr[num]
+          radix = n >= 0 ? (n / (10 ** iter)) % 10 : -((-n / (10 ** iter)) % 10)
+          idx = index[radix + 9]
+          index[radix + 9] -= 1
+          sorted[idx] = n
+        end
+        iter += 1
+        arr = sorted
+      end
+    end`
+    }
   },
 
   countingSort(language){
@@ -249,6 +366,25 @@ export const Sorts =  {
     for n in range(min, max + 1):
         for _ in range(map[n]):
             sorted.append(n)`;
+    }
+    if(language === 'ruby'){
+      return `def counting_sort(arr)
+      map = Hash.new(0)
+      min, max = arr[0], arr[0]
+      arr.each do |n|
+        map[n] += 1;
+        min = n if n < min
+        max = n if n > max
+      end
+      idx = 0
+      (min..max).each do |n|
+        map[n].times do
+          arr[idx] = n
+          idx += 1
+        end
+      end
+      p arr
+    end`
     }
   },
 
@@ -301,17 +437,42 @@ export const Sorts =  {
             merged.append(merge(arr[i], arr[i+1]))
         arr = merged`;
     }
+    if(language === 'ruby'){
+      return `def merge_sort(arr)
+      arr.map! { |n| [n] }
+      while arr.length > 1
+        sorted = []
+        arr.each_with_index do |a1, idx|
+          next if idx % 2 == 1
+          a2 = arr[idx + 1] || []
+          temp = []
+          until a2.length == 0 || a1.length == 0
+            array = a1[0] < a2[0] ? a1 : a2
+            temp << array.shift
+          end
+          sorted << temp + a1 + a2
+        end
+        arr = sorted
+      end
+    end`
+    }
   },
 
   jsSort(language){
     if(language === 'javascript'){
       return `function jsSort(arr){
-        arr.sort((a,b) => a-b);
-      }`;
+      arr.sort((a,b) => a-b);
+    }`;
     }
     if(language === 'python'){
       return `def python_sort(arr):
     arr.sort()`;
     }
+    if(language === 'ruby'){
+      return `def ruby_sort(arr)
+      arr.sort
+    end`
+    }
   }
+
 };
