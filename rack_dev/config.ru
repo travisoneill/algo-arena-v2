@@ -2,6 +2,7 @@ require 'json'
 require_relative './benchmark.rb'
 
 class App
+  include Benchmark
   def call(env)
     req = Rack::Request.new(env)
     case req.path_info
@@ -9,9 +10,9 @@ class App
       [200, {'Content-Type' => 'text/html'}, ['200 Hello World']]
     when /api\/algos/
       if req.post?
-        val = Benchmark.handle_request(req.params)
+        data = JSON.parse(req.body.read)
+        val = handle_request(data['lengthArr'], data['request_data'])
         [200, {'Content-Type' => 'text/html'}, [val]]
-        [200, {'Content-Type' => 'text/html'}, ['working']]
       else
         [500, {'Content-Type' => 'text/html'}, ["POST only at #{req.path_info}"]]
       end

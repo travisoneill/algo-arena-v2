@@ -94,7 +94,8 @@ class ControlPanel extends React.Component{
     let method;
     if(language === 'javascript'){method = `var ${name} = ${text}`;}
     if(language === 'python'){method = text;}
-    return {method: method, name: name, language: language}
+    if(language === 'ruby'){method = text;}
+    return {method: method, name: name, language: language};
   }
   //clears all entred text from the currently selected editor
   clearPane(e){
