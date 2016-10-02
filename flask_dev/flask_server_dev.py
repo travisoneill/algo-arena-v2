@@ -20,6 +20,7 @@ def run():
     name = data['request_data']['name']
     result = benchmark.handle_request(lengthArr, request_data)
     response_data = {"xAxis": lengthArr, "name": name, "rawData": result}
+    print(response_data)
     return jsonify(response_data)
 
 if __name__ == "__main__":

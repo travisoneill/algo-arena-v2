@@ -34,10 +34,10 @@ def root(params):
 @app.route('/api/algos', methods=['POST'])
 def send():
     incoming_data = request.get_json()
-    print("INCOMING")
-    print(incoming_data)
-    print("JSON")
-    print(json.dumps(incoming_data))
+    # print("INCOMING")
+    # print(incoming_data)
+    # print("JSON")
+    # print(json.dumps(incoming_data))
     test_params = incoming_data['lengthArr']
     responses = []
     final_data = {}
@@ -52,14 +52,16 @@ def send():
         server = services[language]
         request_url = 'http://localhost:' + ports[server] + request.path
         outgoing_data = {'lengthArr': test_params, 'request_data': request_data}
+        print('OUTGOING')
+        print(outgoing_data)
         headers = {'Content-Type' : 'application/json'}
         # print('OUTGOING')
         # print(outgoing_data)
         # print('JSON')
         # print(json.dumps(outgoing_data))
         res = requests.post(request_url, data=json.dumps(outgoing_data), headers=headers)
-        print(res)
         final_data[key] =  json.loads(res.content)
+        print(final_data)
         print(jsonify(final_data))
     return jsonify(final_data)
 

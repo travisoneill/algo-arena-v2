@@ -14,7 +14,7 @@ def handle_request(int_array, request_data):
     exec(code)
     test_function = locals()[request_data['name']]
     test_results = run_test(int_array, test_function)
-    print(test_results)
+    # print(test_results)
     return test_results
 
 def run_test(int_array, test_function, iterations=1):

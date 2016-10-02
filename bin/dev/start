@@ -16,7 +16,7 @@ export FLASK_DEBUG=1
 python flask_server_dev.py & bg
 deactivate & bg
 cd ../rack_dev
-bundle exec rackup config.ru -p 8004
+bundle exec rackup rack_server_dev.ru -p 8004 & bg
 cd ..
 
 #trap
