@@ -2,7 +2,7 @@
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const Setup = require('./services_config.js');
-const prom = require('./handle_req.js');
+// const prom = require('./handle_req.js');
 const port = process.env.PORT || 5000;
 server.connection({ port: port });
 
@@ -32,12 +32,16 @@ server.route({
   method: 'POST',
   path: '/api/algos',
   handler(req, res){
-    let reqData = req.body;
-    let testParams = req.lengthArr;
-    let data1 = reqData.data1;
-    let data2 = reqData.data2;
-    prom.then((data) => console.log(data));
-    
+    const reqData = req.payload;
+    const testParams = reqData.lengthArr;
+    const data1 = reqData.data1;
+    const data2 = reqData.data2;
+    const req1 = { url: serviceMap[data1.language], outgoing_data: { lengthArr: testParams, request_data: data1 } };
+    const req2 = { url: serviceMap[data2.language], outgoing_data: { lengthArr: testParams, request_data: data2 } };
+    // prom.then((data) => console.log(data));
+    console.log(req1);
+    console.log(req2);
+    res('DONE');
   }
 });
 
