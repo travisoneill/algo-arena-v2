@@ -1,5 +1,6 @@
 'use strict';
 const Hapi = require('hapi');
+const request = require('request');
 const server = new Hapi.Server();
 const Setup = require('./services_config.js');
 // const prom = require('./handle_req.js');
