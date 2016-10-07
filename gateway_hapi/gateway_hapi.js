@@ -37,6 +37,7 @@ server.route({
     let data1 = reqData.data1;
     let data2 = reqData.data2;
     prom.then((data) => console.log(data));
+    
   }
 });
 
