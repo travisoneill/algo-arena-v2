@@ -37,12 +37,31 @@ server.route({
     const testParams = reqData.lengthArr;
     const data1 = reqData.data1;
     const data2 = reqData.data2;
-    const req1 = { url: serviceMap[data1.language], outgoing_data: { lengthArr: testParams, request_data: data1 } };
-    const req2 = { url: serviceMap[data2.language], outgoing_data: { lengthArr: testParams, request_data: data2 } };
-    // prom.then((data) => console.log(data));
-    console.log(req1);
-    console.log(req2);
-    res('DONE');
+    const req1 = {
+      uri: serviceMap[data1.language],
+      method: 'POST',
+      json: { lengthArr: testParams, request_data: data1 }
+    };
+    const req2 = {
+      url: serviceMap[data2.language],
+      method: 'POST',
+      json: { lengthArr: testParams, request_data: data2 }
+    };
+    let responses = [];
+    const resHandler = (error, response, body) => {
+      responses.push(response);
+      if(responses.length === 2){
+        compile(responses);
+      } else {
+        console.log('waiting');
+      }
+    }
+    const compile = (array) => {
+      console.log('COMPILING');
+      return 'COMPILED RESPONSE'
+    }
+    request(req1, resHandler);
+    request(req2, resHandler);  
   }
 });
 
