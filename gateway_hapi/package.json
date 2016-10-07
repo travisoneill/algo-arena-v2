@@ -1,0 +1,15 @@
+{
+  "name": "gateway_hapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gateway_hapi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^15.1.1"
+  }
+}
