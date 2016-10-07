@@ -2,7 +2,7 @@
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const Setup = require('./services_config.js');
-
+const prom = require('./handle_req.js');
 const port = process.env.PORT || 5000;
 server.connection({ port: port });
 
@@ -10,6 +10,7 @@ server.connection({ port: port });
 const environment = process.env.NODE_ENV || 'development';
 const serviceMap = Setup.mapServices(environment);
 console.log(serviceMap);
+
 
 server.route({
   method: 'GET',
@@ -31,7 +32,11 @@ server.route({
   method: 'POST',
   path: '/api/algos',
   handler(req, res){
-    //TODO Make this work!!!
+    let reqData = req.body;
+    let testParams = req.lengthArr;
+    let data1 = reqData.data1;
+    let data2 = reqData.data2;
+    prom.then((data) => console.log(data));
   }
 });
 
