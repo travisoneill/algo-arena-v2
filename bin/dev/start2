@@ -1,7 +1,7 @@
 #!/bin/bash
 echo development server start
 cd gateway_dev
-DEBUG=express:* node node_express_server .js & bg
+DEBUG=express:* node gateway_hapi.js & bg
 cd ../frontend
 DEBUG=express:* node static_server.js & bg
 npm run webpack_watch & fg
@@ -12,6 +12,8 @@ source venv/bin/activate
 export FLASK_DEBUG=1
 python flask_server_dev.py & bg
 deactivate & bg
+cd ../rack_dev
+bundle exec rackup rack_server_dev.ru -p 8004 & bg
 cd ..
 
 #trap

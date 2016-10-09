@@ -61,7 +61,7 @@ server.route({
       return 'COMPILED RESPONSE'
     }
     request(req1, resHandler);
-    request(req2, resHandler);  
+    request(req2, resHandler);
   }
 });
 
