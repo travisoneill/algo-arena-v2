@@ -15,7 +15,7 @@ class App
         name = incoming_data['request_data']['name']
         val = handle_request(lengthArr, request_data)
         response_data = {'xAxis': lengthArr, 'name': name, 'rawData': val}
-        [200, {'Content-Type' => 'text/html'}, [response_data.to_json]]
+        [200, {'Content-Type' => 'application/json'}, [response_data.to_json]]
       else
         [500, {'Content-Type' => 'text/html'}, ["POST only at #{req.path_info}"]]
       end
@@ -25,4 +25,6 @@ class App
   end
 end
 
-run App.new
+port = ENV['PORT'] || 8004
+app = App.new
+Rack::Handler.default.run(app, Port: port)

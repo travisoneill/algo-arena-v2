@@ -4,7 +4,7 @@ const request = require('request');
 const server = new Hapi.Server();
 const Setup = require('./services_config.js');
 // const prom = require('./handle_req.js');
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 server.connection({ port: port });
 
 // const environment = process.env.NODE_ENV || 'production'; //for production mode test
@@ -17,7 +17,10 @@ server.route({
   method: 'GET',
   path: '/',
   handler(req, res){
-    res('Hello World');
+    console.log('GET /');
+    const handleRes = (e, resp, body) => { res(body); }
+    const url = serviceMap['static'];
+    request(url, handleRes);
   }
 });
 
@@ -26,6 +29,17 @@ server.route({
   path: '/env',
   handler(req, res){
     res(process.env);
+  }
+});
+
+server.route({
+  method: 'GET',
+  path: '/{staticFile}',
+  handler(req, res){
+    const handleRes = (e, resp, body) => { res(body); }
+    const url = serviceMap['static'] + '/' + req.params.staticFile;
+    console.log(url);
+    request(url, handleRes);
   }
 });
 

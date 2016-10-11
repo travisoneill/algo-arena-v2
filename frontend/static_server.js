@@ -23,9 +23,11 @@ Server.get('/*', function(req, res){
   res.sendFile(Path.join(__dirname + '/index.html'));
 });
 
+if (module === require.main) {
+  var server = Server.listen(process.env.PORT || 8003, function () {
+    var port = server.address().port;
+    console.log('Node Server listening on port %s', port);
+  });
+}
 
-
-
-Server.listen( process.env.PORT || 8003, function(){
-  console.log('Server Running');
-});
+module.exports = server;

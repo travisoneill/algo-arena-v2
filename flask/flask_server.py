@@ -1,3 +1,4 @@
+import os
 import benchmark
 from flask import Flask, request, json, jsonify
 
@@ -23,4 +24,5 @@ def run():
     return jsonify(response_data)
 
 if __name__ == "__main__":
-    app.run()
+    port = os.environ.get('PORT') or 8002
+    app.run(port=int(port))
