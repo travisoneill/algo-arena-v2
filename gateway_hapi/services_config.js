@@ -6,7 +6,7 @@ PORTS = {
 }
 
 SERVICES = {
-  'static': 'static'
+  'static': 'static',
   'javascript': 'express',
   'python': 'flask',
   'ruby': 'rack'

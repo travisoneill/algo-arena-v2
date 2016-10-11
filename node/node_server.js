@@ -14,6 +14,7 @@ Server.get('/', function(req, res){
 });
 
 Server.post('/api/algos', function(req, res){
+  console.log(req.body);
   let data = Controller.receiveCode(req.body);
   res.send(data);
 });

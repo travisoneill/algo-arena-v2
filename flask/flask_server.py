@@ -15,6 +15,7 @@ def root():
 
 @app.route('/api/algos', methods=['POST'])
 def run():
+    print('FLASK')
     data = request.get_json(force=True)
     lengthArr = data['lengthArr']
     request_data = data['request_data']

@@ -17,11 +17,7 @@ server.route({
   method: 'GET',
   path: '/',
   handler(req, res){
-    console.log('GET /');
-    // const handleRes = {
-    //   development(e, resp, body){ res(body); },
-    //   production(e, resp, body){} //TODO implement this
-    // }
+    // console.log('GET /');
     const handleRes = (e, resp, body) => { res(body); }
     const url = serviceMap['static'];
     request(url, handleRes);
@@ -62,19 +58,23 @@ server.route({
     const data1 = reqData.data1;
     const data2 = reqData.data2;
     const req1 = {
-      uri: serviceMap[data1.language],
+      uri: serviceMap[data1.language] + '/api/algos',
       method: 'POST',
       json: { lengthArr: testParams, request_data: data1 }
     };
     const req2 = {
-      url: serviceMap[data2.language],
+      url: serviceMap[data2.language] + '/api/algos',
       method: 'POST',
       json: { lengthArr: testParams, request_data: data2 }
     };
+    console.log({req1: req1, req2: req2});
     let responses = [];
     const resHandler = (error, response, body) => {
-      responses.push(response);
+      console.log(body);
+      responses.push(body);
+      console.log(responses.length);
       if(responses.length === 2){
+        console.log('compiling');
         compile(responses);
       } else {
         console.log('waiting');
@@ -82,7 +82,13 @@ server.route({
     }
     const compile = (array) => {
       console.log('COMPILING');
-      return 'COMPILED RESPONSE'
+      // return 'COMPILED RESPONSE'
+      const finalResponse = {
+        data1: responses[0],
+        data2: responses[1]
+      }
+      console.log(finalResponse);
+      res(finalResponse);
     }
     request(req1, resHandler);
     request(req2, resHandler);
