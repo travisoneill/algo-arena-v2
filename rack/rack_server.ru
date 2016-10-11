@@ -27,6 +27,8 @@ class App
 end
 
 port = ENV['PORT'] || 8004
+p ENV
 p port
+p ARGV
 app = App.new
 Rack::Handler.default.run(app, Port: port)
