@@ -1,6 +1,7 @@
 runtime: ruby
 service: rack
 vm: true
-entrypoint: bundle exec rackup rack_server.ru -p $PORT
+entrypoint: bundle exec rackup rack_server_dev.ru -p $PORT
+
 manual_scaling:
   instances: 1

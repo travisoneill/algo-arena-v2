@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-require 'pry'
 module Benchmark
   def random_array(length=10000, lo=-1000000, hi=1000000, data_type='integer')
     random = []
@@ -32,7 +30,7 @@ module Benchmark
   end
 end
 
-if __FILE__ == $0
-  puts "RUBY BENCHMARK CLI"
-  pry
-end
+# if __FILE__ == $0
+#   puts "RUBY BENCHMARK CLI"
+#   pry
+# end

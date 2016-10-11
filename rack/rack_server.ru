@@ -6,6 +6,9 @@ class App
   def call(env)
     req = Rack::Request.new(env)
     case req.path_info
+    when /env/
+      p ENV
+      [200, {'Content-Type' => 'text/html'}, [ENV['RACK_ENV']] ]
     when /hello/
       [200, {'Content-Type' => 'text/html'}, ['200 Hello World']]
     when /api\/algos/
@@ -17,6 +20,7 @@ class App
         val = handle_request(lengthArr, request_data)
         response_data = {'xAxis': lengthArr, 'name': name, 'rawData': val}
         [200, {'Content-Type' => 'application/json'}, [response_data.to_json]]
+        # [200, {'Content-Type' => 'application/json'}, ['POST /api/algos']]
       else
         [500, {'Content-Type' => 'text/html'}, ["POST only at #{req.path_info}"]]
       end
@@ -26,9 +30,10 @@ class App
   end
 end
 
-port = ENV['PORT'] || 8004
-p ENV
-p port
-p ARGV
 app = App.new
-Rack::Handler.default.run(app, Port: port)
+run app
+
+
+
+# port = ENV['PORT'].to_i || 8080
+# app = App.new
