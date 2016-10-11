@@ -6,6 +6,7 @@ PORTS = {
 }
 
 SERVICES = {
+  'static': 'static'
   'javascript': 'express',
   'python': 'flask',
   'ruby': 'rack'
@@ -24,6 +25,7 @@ module.exports = {
         map[service] = productionURL(SERVICES[service]);
       });
     }
+    map.env = environment;
     return map;
   },
 };
@@ -33,6 +35,8 @@ function  productionURL(serviceName){
   projectURL = projectID + '.appspot.com';
   if(serviceName === 'default'){
     return 'https://' + projectURL;
+  } else if(serviceName === 'static'){
+    return 'https://storage.googleapis.com/algorithm-arena-static/index.html'
   } else {
     return 'https://' + serviceName + '-dot-' + projectURL;
   }

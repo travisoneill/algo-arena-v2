@@ -18,6 +18,10 @@ server.route({
   path: '/',
   handler(req, res){
     console.log('GET /');
+    // const handleRes = {
+    //   development(e, resp, body){ res(body); },
+    //   production(e, resp, body){} //TODO implement this
+    // }
     const handleRes = (e, resp, body) => { res(body); }
     const url = serviceMap['static'];
     request(url, handleRes);
@@ -36,7 +40,13 @@ server.route({
   method: 'GET',
   path: '/{staticFile}',
   handler(req, res){
-    const handleRes = (e, resp, body) => { res(body); }
+    const fileType = req.params.staticFile.match(/\w*$/);
+    const mimeType = {
+      css: 'text/css',
+      js: 'application/javascript'
+    }
+    const ContentType = mimeType[fileType];
+    const handleRes = (e, resp, body) => { res(body).type(ContentType); }
     const url = serviceMap['static'] + '/' + req.params.staticFile;
     console.log(url);
     request(url, handleRes);
