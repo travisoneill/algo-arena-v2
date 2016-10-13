@@ -1,6 +1,0 @@
-service: default
-runtime: nodejs
-vm: true
-
-manual_scaling:
-  instances: 1
