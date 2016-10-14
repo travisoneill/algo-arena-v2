@@ -1,5 +1,6 @@
 import React from 'react';
 import DropdownItem from './dropdown_item';
+import * as Selectors from '../redux_util/select_handlers';
 
 class LanguageDropdown extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class LanguageDropdown extends React.Component {
   updateSelection(){
     const el = document.getElementById(`editor-${this.props.n}`);
     const selected = ace.edit(el).getSession().getMode().$id.match(/\w*$/)[0];
+    debugger;
+    Selectors.selectButton(this.props.n);
     this.setState({disabled: selected});
   }
 

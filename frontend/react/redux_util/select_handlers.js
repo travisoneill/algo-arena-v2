@@ -4,8 +4,11 @@ export function selectButton(side){
   document.getElementById(`${other[side]}`).disabled = false;
 }
 
-export function  focusPane(side){
-
+export function focusPane(side){
+  const pane = document.getElementById(`editor-${side}`);
+  pane.focus();
+  var n = ace.edit(pane).getSession().getValue().split("\n").length;
+  ace.edit(pane).gotoLine(n);
 }
 
 // module.exports = {

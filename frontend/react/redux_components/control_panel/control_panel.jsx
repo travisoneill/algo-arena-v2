@@ -37,6 +37,7 @@ class ControlPanel extends React.Component{
   selectPane(e){
     Selectors.selectButton(e.target.id);
     this.setState({selected: e.target.id});
+    Selectors.focusPane(e.target.id);
   }
   //sets range of array lengths for test
   setRange(e){
