@@ -3,6 +3,8 @@ const Hapi = require('hapi');
 const request = require('request');
 const server = new Hapi.Server();
 const Setup = require('./services_config.js');
+const { getData, compile } = require('./handle_req.js');
+const Promise = require('promise');
 // const prom = require('./handle_req.js');
 const port = process.env.PORT || 8000;
 server.connection({ port: port });
@@ -10,8 +12,7 @@ server.connection({ port: port });
 // const environment = process.env.NODE_ENV || 'production'; //for production mode test
 const environment = process.env.NODE_ENV || 'development';
 const serviceMap = Setup.mapServices(environment);
-console.log(serviceMap);
-
+// console.log(serviceMap);
 
 server.route({
   method: 'GET',
@@ -44,7 +45,7 @@ server.route({
     const ContentType = mimeType[fileType];
     const handleRes = (e, resp, body) => { res(body).type(ContentType); }
     const url = serviceMap['static'] + '/' + req.params.staticFile;
-    console.log(url);
+    // console.log(url);
     request(url, handleRes);
   }
 });
@@ -67,31 +68,10 @@ server.route({
       method: 'POST',
       json: { lengthArr: testParams, request_data: data2 }
     };
-    console.log({req1: req1, req2: req2});
-    let responses = [];
-    const resHandler = (error, response, body) => {
-      console.log(body);
-      responses.push(body);
-      console.log(responses.length);
-      if(responses.length === 2){
-        console.log('compiling');
-        compile(responses);
-      } else {
-        console.log('waiting');
-      }
-    }
-    const compile = (array) => {
-      console.log('COMPILING');
-      // return 'COMPILED RESPONSE'
-      const finalResponse = {
-        data1: responses[0],
-        data2: responses[1]
-      }
-      console.log(finalResponse);
-      res(finalResponse);
-    }
-    request(req1, resHandler);
-    request(req2, resHandler);
+    // console.log("this Avi's code!!!!!!!!");
+    let p1 = getData(req1);
+    let p2 = getData(req2);
+    compile(p1, p2, res);
   }
 });
 

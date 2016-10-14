@@ -1,16 +1,30 @@
-const checkData = (res1, res2) => {
-    let results = [];
-    let promise = new Promise((resolve, reject) => {
-    if([res1, res2].every((res) => typeof res !== 'undefined')){
-      resolve([res1, res2]);
-    } else {
-      results.push(res1);
-      results.push(res2);
-    }
-  });
-  promise.then(data => sendToFrontend(data));
-};
-const sendToFrontend = (data) => {
-  // some callback that will take the data
-  //  from the and send it to the front
+const Promise = require('promise');
+const request = require('request');
+
+module.exports = {
+  getData(req) {
+  // return new pending Promise
+  return new Promise((resolve, reject) => {
+    const res = request(req, (error, response, body) => {
+      if (body) {
+        resolve(body);
+      } else {
+        reject(error);
+      }
+      });
+    });
+  },
+
+  compile(p1, p2, res) {
+    Promise.all([p1, p2]).then((values) => {
+      console.log('COMPILING');
+      // return 'COMPILED RESPONSE'
+      const finalResponse = {
+        data1: values[0],
+        data2: values[1]
+      };
+      console.log(finalResponse);
+      res(finalResponse);
+    }).catch(err => {console.error(err);});
+  }
 };
