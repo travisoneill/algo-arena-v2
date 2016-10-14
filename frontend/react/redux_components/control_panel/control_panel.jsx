@@ -1,18 +1,18 @@
-import React  from 'react';
+import React from 'react';
 import { HoverStash } from './hover_stash';
 import * as Library from '../../redux_util/sorts';
+import * as Selectors from '../../redux_util/select_handlers';
 
 class ControlPanel extends React.Component{
   constructor(props){
     super(props);
     this.state = {
       running: false,
-      selected: '1',
+      selected: 1,
       min: 1000,
       max: 10000,
       tests: 10
     };
-    this.selectCheck = this.selectCheck.bind(this);
     this.selectPane = this.selectPane.bind(this);
     this.setRange = this.setRange.bind(this);
     this.setTests = this.setTests.bind(this);
@@ -29,13 +29,13 @@ class ControlPanel extends React.Component{
     this.setState({running: false});
   }
 
-  //checks selected pane to diable selector button
-  selectCheck(n){
-    return this.state.selected === n;
+  componentDidMount() {
+    Selectors.selectButton(1);
   }
 
   //selects pane to insert code when buttons pressed
   selectPane(e){
+    Selectors.selectButton(e.target.id);
     this.setState({selected: e.target.id});
   }
   //sets range of array lengths for test
@@ -127,11 +127,9 @@ class ControlPanel extends React.Component{
         <div className='selector-buttons'>
           <button
             className='pane-selector' id='1'
-            disabled={this.selectCheck('1')}
             onClick={this.selectPane}>LEFT PANE</button>
           <button
             className='pane-selector' id='2'
-            disabled={this.selectCheck('2')}
             onClick={this.selectPane}>RIGHT PANE</button>
           <div className='button-container'>
             <input

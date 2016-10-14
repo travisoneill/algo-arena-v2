@@ -2,7 +2,7 @@ PORTS = {
   'javascript': 8001,
   'python': 8002,
   'static': 8003,
-  'ruby': 9292
+  'ruby': 8004
 }
 
 SERVICES = {

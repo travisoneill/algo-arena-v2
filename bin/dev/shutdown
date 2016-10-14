@@ -2,7 +2,7 @@
 echo KILL WEBPACK
 ps ax | grep frontend/node_modules/.bin/webpack\ --watch | awk NR==1'{print $1}' | xargs kill -2
 echo KILL GATEWAY
-lsof -ti :5000 | xargs kill -5
+lsof -ti :8000 | xargs kill -5
 echo KILL STATIC
 lsof -i :8003 | grep node | grep LISTEN | awk '{print $2}' | xargs kill -2
 echo KILL FLASK
