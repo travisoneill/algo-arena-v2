@@ -6,10 +6,19 @@ export function selectButton(side){
 
 export function focusPane(side){
   const pane = document.getElementById(`editor-${side}`);
-  pane.focus();
-  var n = ace.edit(pane).getSession().getValue().split("\n").length;
-  ace.edit(pane).gotoLine(n);
+  pane.querySelector('.ace_text-input').focus();
 }
+
+export function getActiveEditor(){
+  const button1 = document.getElementById('1');
+  const button2 = document.getElementById('2');
+  let active;
+  if(button1.disabled){ active = 1; }
+  if(button2.disabled){ active = 2; }
+  const editor = document.getElementById(`editor-${active}`);
+  return ace.edit(editor);
+}
+
 
 // module.exports = {
 //   selectButton: selectButton,

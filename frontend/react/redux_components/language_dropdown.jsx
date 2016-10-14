@@ -13,7 +13,6 @@ class LanguageDropdown extends React.Component {
   updateSelection(){
     const el = document.getElementById(`editor-${this.props.n}`);
     const selected = ace.edit(el).getSession().getMode().$id.match(/\w*$/)[0];
-    debugger;
     Selectors.selectButton(this.props.n);
     this.setState({disabled: selected});
   }

@@ -59,10 +59,10 @@ class ControlPanel extends React.Component{
   }
   //inputs sort function from library into the selected editor
   demoSort(e){
-    const pane = document.getElementById(`editor-${this.state.selected}`);
-    const language = ace.edit(pane).getSession().getMode().$id.match(/\w*$/)[0];
+    const pane = Selectors.getActiveEditor();
+    const language = pane.getSession().getMode().$id.match(/\w*$/)[0];
     const text = Library['Sorts'][e.target.id](language);
-    ace.edit(pane).getSession().setValue(text);
+    pane.getSession().setValue(text);
   }
 
   //opens instruction modal
@@ -152,7 +152,7 @@ class ControlPanel extends React.Component{
               onChange={this.setTests} value={this.state.tests} />
           </div>
           <button
-            className='pane-selector' id='2'
+            className='pane-selector' id='run'
             disabled={this.state.running}
             onClick={this.handleSubmit}>RUN TESTS</button>
           <button
