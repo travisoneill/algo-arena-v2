@@ -9,15 +9,28 @@
 ## Usage
 ![Screen Shot][ss1]
 
+### Control panel
+
+The top row of the control panel allows the user to clear the code inputs, specify the test parameters and run the tests.
+Test parameters are specified by inputing the upper and lower bound of the array lengths desired for testing and the number
+of tests desired.  For example the following inputs: {min: 1000, max: 5000, n: 5} would result in testing arrays of length
+1000, 2000, 3000, 4000, and 5000.  All arrays are generated randomly at the start of the test and a duplicate is taken
+for each iteration.  All elements are integers in the range (-1000000..1000000).
+
+The bottom row of the control panel allows the user to run functions from our library of sort functions written by
+the development team.  Hovering over the buttons will display a text panel with information about the selected sort
+algorithm.   
+
+### Data Display
+
+The center element is a D3 chart that displays data from the benchmark tests.  The chart listens to a flux store and on change
+displays the data as a scatter plot wit array length on the x axis and time (ms) on the y axis.  Hovering over a point on the
+chart allows the user to see the raw data from the test.
+
 ## Architecture
 ![Backend Architecture][be1]
 
 Backend:
-The backend uses an API gateway architecture. The gateway parses incoming AJAX requests and sends multiple HTTP requests to  (Express) and Python (Flask/Gunicorn) miroservices based on the language of the code specified in the JSON object in the incoming request.  It parses the responses from the individual microservices and combines them into one response to be sent back to the frontend.  
-
-The individual microservices receive code and test parameters in a JSON object from the gateway.  The request is parsed and the snippet is converted into runnable code to execute the benchmarking scripts on and the results are returned to the gateway as a JSON object.
-
-Static files are delivered by the Google Cloud CDN.
 
 
 
@@ -74,23 +87,6 @@ Data is sent to the API as JSON in the format:
 
 ```
 
-### Control panel
-
-The top row of the control panel allows the user to clear the code inputs, specify the test parameters and run the tests.
-Test parameters are specified by inputing the upper and lower bound of the array lengths desired for testing and the number
-of tests desired.  For example the following inputs: {min: 1000, max: 5000, n: 5} would result in testing arrays of length
-1000, 2000, 3000, 4000, and 5000.  All arrays are generated randomly at the start of the test and a duplicate is taken
-for each iteration.  All elements are integers in the range (-1000000..1000000).
-
-The bottom row of the control panel allows the user to run functions from our library of sort functions written by
-the development team.  Hovering over the buttons will display a text panel with information about the selected sort
-algorithm.   
-
-### Data Display
-
-The center element is a D3 chart that displays data from the benchmark tests.  The chart listens to a flux store and on change
-displays the data as a scatter plot wit array length on the x axis and time (ms) on the y axis.  Hovering over a point on the
-chart allows the user to see the raw data from the test.
 
 
 ## Coming Soon:
