@@ -1,22 +1,17 @@
 #!/bin/bash
 echo development server start
-cd gateway_dev
-source venv/bin/activate
-export FLASK_DEBUG=1
-python api_gateway_dev.py & bg
-deactivate
+cd gateway
+DEBUG=express:* node gateway_hapi.js & bg
 cd ../frontend
 DEBUG=express:* node static_server.js & bg
 npm run webpack_watch & fg
-cd ../node_dev
-DEBUG=express:* node node_server_dev.js & bg
-cd ../flask_dev
+cd ../node
+DEBUG=express:* node node_server.js & bg
+cd ../flask
 source venv/bin/activate
 export FLASK_DEBUG=1
-python flask_server_dev.py & bg
+python flask_server.py & bg
 deactivate & bg
-cd ../rack_dev
-bundle exec rackup rack_server_dev.ru -p 8004 & bg
+cd ../rack
+bundle exec rackup rack_server.ru -p 8004 & bg
 cd ..
-
-#trap

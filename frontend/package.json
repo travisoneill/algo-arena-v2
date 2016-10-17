@@ -8,7 +8,9 @@
   "main": "redux_main.jsx",
   "scripts": {
     "webpack_watch": "webpack --watch",
+    "webpack_setup": "webpack --config webpack.config.js",
     "webpack_deploy": "webpack --config webpack_deploy.config.js --progress -p",
+    "webpack-test": "webpack --config webpack_test.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build.js production"
   },

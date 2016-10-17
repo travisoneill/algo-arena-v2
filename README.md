@@ -16,6 +16,13 @@ $ ./dev_shutdown
 
 $ ./dev_reset
 
+![GitHub Logo](/images/logo.png)
+
+[ss1]: ./docs/ss1.png
+[ss2]: ./docs/ss1.png
+[ss3]: ./docs/ss1.png
+[ss1]: ./docs/ss1.png
+
 
 
 ## ***DEPECATED***
