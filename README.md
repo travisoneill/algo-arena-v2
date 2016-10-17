@@ -1,8 +1,22 @@
 # Algo Arena
 
-[Algo Arena live][live_url]
 
-[live_url]: http://algorithm-arena.appspot.com/
+
+[ss1]: ./docs/ss1.png
+[ss2]: ./docs/ss1.png
+[ss3]: ./docs/ss1.png
+[ss4]: ./docs/ss1.png
+[be1]: ./docs/aa-backend1.png
+
+## Usage
+![Screen Shot][ss1]
+
+## Architecture
+![Backend Architecture][be1]
+
+
+
+## Development
 
 To set up development environment run:
 
@@ -16,23 +30,12 @@ $ ./dev_shutdown
 
 $ ./dev_reset
 
-![GitHub Logo][be1]
-![GitHub Logo][be2]
-![GitHub Logo][be3]
-![GitHub Logo][be4]
-
-[ss1]: ./docs/ss1.png
-[ss2]: ./docs/ss1.png
-[ss3]: ./docs/ss1.png
-[ss4]: ./docs/ss1.png
-[be1]: ./docs/aa-backend1.png
-[be2]: ./docs/aa-backend2.png
-[be3]: ./docs/aa-backend.svg
-[be4]: ./docs/aa-backend1.svg
-
 
 
 ## ***DEPECATED***
+
+
+
 
 
 Algo Arena is a full stack web application that allows users to input their own sort algorithms and benchmark them.  
