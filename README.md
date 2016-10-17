@@ -16,12 +16,19 @@ $ ./dev_shutdown
 
 $ ./dev_reset
 
-![GitHub Logo][ss1]
+![GitHub Logo][be1]
+![GitHub Logo][be2]
+![GitHub Logo][be3]
+![GitHub Logo][be4]
 
 [ss1]: ./docs/ss1.png
 [ss2]: ./docs/ss1.png
 [ss3]: ./docs/ss1.png
-[ss1]: ./docs/ss1.png
+[ss4]: ./docs/ss1.png
+[be1]: ./docs/aa-backend1.png
+[be2]: ./docs/aa-backend2.png
+[be3]: ./docs/aa-backend.svg
+[be4]: ./docs/aa-backend1.svg
 
 
 
