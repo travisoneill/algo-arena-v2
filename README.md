@@ -16,7 +16,7 @@ $ ./dev_shutdown
 
 $ ./dev_reset
 
-![GitHub Logo](/images/logo.png)
+![GitHub Logo][ss1]
 
 [ss1]: ./docs/ss1.png
 [ss2]: ./docs/ss1.png
