@@ -1,7 +1,5 @@
 # Algo Arena
 
-
-
 [ss1]: ./docs/ss1.png
 [ss2]: ./docs/ss1.png
 [ss3]: ./docs/ss1.png
@@ -14,21 +12,36 @@
 ## Architecture
 ![Backend Architecture][be1]
 
+Backend:
+The backend uses an API gateway architecture. The gateway parses incoming AJAX requests and sends multiple HTTP requests to  (Express) and Python (Flask/Gunicorn) miroservices based on the language of the code specified in the JSON object in the incoming request.  It parses the responses from the individual microservices and combines them into one response to be sent back to the frontend.  
+
+The individual microservices receive code and test parameters in a JSON object from the gateway.  The request is parsed and the snippet is converted into runnable code to execute the benchmarking scripts on and the results are returned to the gateway as a JSON object.
+
+Static files are delivered by the Google Cloud CDN.
+
 
 
 ## Development
 
 To set up development environment run:
 
+```
 $ ./dev_config.sh
+```
 
+```
 $ ./dev_startup.sh
+```
 
 To shut down or reset
 
+```
 $ ./dev_shutdown
+```
 
+```
 $ ./dev_reset
+```
 
 
 
