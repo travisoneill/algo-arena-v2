@@ -3,6 +3,7 @@ PORTS = {
   'python': 8002,
   'static': 8003,
   'ruby': 8004
+//language: local port
 }
 
 SERVICES = {
@@ -10,6 +11,7 @@ SERVICES = {
   'javascript': 'express',
   'python': 'flask',
   'ruby': 'rack'
+//language: service name
 }
 
 module.exports = {

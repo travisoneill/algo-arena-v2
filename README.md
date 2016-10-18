@@ -1,11 +1,5 @@
 # Algo Arena
 
-[ss1]: ./docs/ss1.png
-[ss2]: ./docs/ss1.png
-[ss3]: ./docs/ss1.png
-[ss4]: ./docs/ss1.png
-[be1]: ./docs/aa-backend1.png
-[ace]: https://ace.c9.io
 
 ## Usage and Implementation Details
 ![Screen Shot][ss1]
@@ -88,7 +82,6 @@ Gateway Response:
 }
 ```
 
-
 ## Development
 
 To install dependencies clone the repo and run:
@@ -109,59 +102,59 @@ $ ./dev/shutdown
 $ ./dev/reset
 ```
 
+To add new services to the gateway add the language and local port to the
+`PORTS` object `/gateway/services_config.js:1`
+```JavaScript
+PORTS = {
+  'javascript': 8001,
+  'python': 8002,
+  'static': 8003,
+  'ruby': 8004
+//language: local port
+}
+```
+Give the service a name for deployment and add it to the `SERVICES` object
+at `/gateway/services_config.js:9`
+```JavaScript
+SERVICES = {
+  'static': 'static',
+  'javascript': 'express',
+  'python': 'flask',
+  'ruby': 'rack'
+//language: service name
+}
+```
+And make sure it matches the name under `service:` in the `app.yaml` file.
+```yaml
+service: flask
+runtime: python
+vm: true
+entrypoint: gunicorn -b :$PORT flask_server:app
+
+runtime_config:
+  python_version: 3
+manual_scaling:
+  instances: 1
+```
+
+Now any request sent with your language specified in the JSON to `/api/algos`
+will be automatically routed to your service locally and in production.  
+
+## Deployment
 
 
 ## ***DEPECATED***
 
 
-
-
-
-Algo Arena is a full stack web application that allows users to input their own sort algorithms and benchmark them.  
-It utilizes Node.js & Express server on the backend and React.js and D3 with flux architecture on the front end.    
-
-## Features & Implementation
-
-### User Code Input
-
-The text areas on both sides of the page allow users to input code in JavaScript to be run in VMs on the backend.
-Code is converted sent to the back end as a string and converted into a function object there.  The name of the declared
-function is parsed out with regexp and sent as well to provide a reference that allows the user to use recursive calls.
-Data is sent to the API as JSON in the format:
-
-```JavaScript
-{
-  method1: [string, code from code input 1]
-  method2: [string, code from code input 2]
-  name1: [sting, name from method1]
-  name2: [sting, name from method2]
-  lengthArr: [int arr, lengths of arrays to test specified by user input in the control panel]
-}
-
-```
-
-### Data Display
-
-The center element is a D3 chart that displays data from the benchmark tests.  The chart listens to a flux store and on change
-displays the data as a scatter plot wit array length on the x axis and time (ms) on the y axis.  Hovering over a point on the
-chart allows the user to see the raw data from the test.
-
-
-
 ## Coming Soon:
-
-### Additional Library Sorts
-
-More sort functions and different implementations of the same sort functions for more visualization possibilities
-
-### Support for additional languages
-
-Ruby is first on the list.  
-
-### Better Charts
-
-Ability to specify logarithmic scale and more interactive elements.
 
 ### Additional Data Types
 
 Allow the user to specify arrays of integers and strings.
+
+[ss1]: ./docs/ss1.png
+[ss2]: ./docs/ss1.png
+[ss3]: ./docs/ss1.png
+[ss4]: ./docs/ss1.png
+[be1]: ./docs/aa-backend1.png
+[ace]: https://ace.c9.io
