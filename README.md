@@ -140,17 +140,6 @@ manual_scaling:
 Now any request sent with your language specified in the JSON to `/api/algos`
 will be automatically routed to your service locally and in production.  
 
-## Deployment
-
-
-## ***DEPECATED***
-
-
-## Coming Soon:
-
-### Additional Data Types
-
-Allow the user to specify arrays of integers and strings.
 
 [ss1]: ./docs/ss1.png
 [ss2]: ./docs/ss1.png
