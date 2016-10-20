@@ -1,5 +1,6 @@
 import os
 import benchmark
+from datetime import datetime
 from flask import Flask, request, json, jsonify
 
 app = Flask(__name__)
@@ -17,11 +18,21 @@ def root():
 def run():
     print('FLASK')
     data = request.get_json(force=True)
+    errors = data['errors']
+    timestamps = data['timestamps']
+    timestamps.append( str( {'flask_in': datetime.now()} ) )
     lengthArr = data['lengthArr']
     request_data = data['request_data']
     name = data['request_data']['name']
     result = benchmark.handle_request(lengthArr, request_data)
-    response_data = {"xAxis": lengthArr, "name": name, "rawData": result}
+    timestamps.append( str( {'flask_out': datetime.now()} ) )
+    response_data = {
+        "xAxis": lengthArr,
+        "name": name,
+        "rawData": result,
+        "errors": errors,
+        "timestamps": timestamps
+    }
     return jsonify(response_data)
 
 if __name__ == "__main__":

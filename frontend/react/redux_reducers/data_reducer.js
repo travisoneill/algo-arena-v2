@@ -5,6 +5,7 @@ import merge from 'lodash/merge';
 const DataReducer = (state = {data: {}, errors: []}, action) => {
   switch (action.type) {
     case DataConstants.RECEIVE_DATA:
+      console.log(action.data)
       return merge({}, state, {data: {
                                       1: action.data["data1"],
                                       2: action.data["data2"]
