@@ -1,5 +1,4 @@
 'use strict';
-
 const Express = require('express');
 const Server = Express();
 const Path = require('path');
@@ -14,8 +13,11 @@ Server.get('/', function(req, res){
 });
 
 Server.post('/api/algos', function(req, res){
-  console.log(req.body);
+  // console.log(req.body);
   let data = Controller.receiveCode(req.body);
+  data.timestamps.push( {express_out: new Date()} );
+  // console.log(data);
+  console.log(data.timestamps);
   res.send(data);
 });
 

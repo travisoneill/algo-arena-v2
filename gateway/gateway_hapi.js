@@ -55,18 +55,31 @@ server.route({
   path: '/api/algos',
   handler(req, res){
     const reqData = req.payload;
+    reqData.timestamps.push( {gateway_in: new Date()} );
     const testParams = reqData.lengthArr;
     const data1 = reqData.data1;
     const data2 = reqData.data2;
+    const timestamps = reqData.timestamps;
+    const errors = reqData.errors;
     const req1 = {
       uri: serviceMap[data1.language] + '/api/algos',
       method: 'POST',
-      json: { lengthArr: testParams, request_data: data1 }
+      json: {
+        lengthArr: testParams,
+        request_data: data1,
+        errors: errors,
+        timestamps: timestamps
+      }
     };
     const req2 = {
       url: serviceMap[data2.language] + '/api/algos',
       method: 'POST',
-      json: { lengthArr: testParams, request_data: data2 }
+      json: {
+        lengthArr: testParams,
+        request_data: data2,
+        errors: errors,
+        timestamps: timestamps
+      }
     };
     // console.log("this Avi's code!!!!!!!!");
     let p1 = getData(req1);

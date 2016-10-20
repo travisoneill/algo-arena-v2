@@ -1,4 +1,7 @@
 export const postData = (data, success, error) => {
+  data.timestamps = [{frontend_out: new Date()}];
+  data.errors = {};
+  console.log(data);
   $.ajax({
     url: 'api/algos',
     type: 'POST',

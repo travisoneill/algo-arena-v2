@@ -4,15 +4,18 @@ const VM = require('./vm');
 
 module.exports = {
   receiveCode(codeObj) {
+    codeObj.timestamps.push( {express_in: new Date()} );
     const lengthArr = codeObj.lengthArr;
     const requestData = codeObj.request_data; //FIXME - what does this do?
     const method = requestData.method;
     const name = requestData.name;
-    console.log(method);
-    return this.testCode(method, name, lengthArr);
+    const timestamps = codeObj.timestamps;
+    const errors = codeObj.errors;
+    // console.log(method);
+    return this.testCode(method, name, lengthArr, errors, timestamps);
   },
 
-  testCode(method, name, lengthArr) {
+  testCode(method, name, lengthArr, errors, timestamps) {
     let results = [];
     let res;
 
@@ -30,7 +33,9 @@ module.exports = {
     return {
       xAxis: lengthArr,
       rawData: results,
-      name: name
+      name: name,
+      errors: errors,
+      timestamps: timestamps
     };
   },
 

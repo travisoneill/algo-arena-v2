@@ -3,6 +3,7 @@ const request = require('request');
 
 module.exports = {
   getData(req) {
+  req.json.timestamps.push({gateway_send: new Date()});
   // return new pending Promise
   return new Promise((resolve, reject) => {
     const res = request(req, (error, response, body) => {
