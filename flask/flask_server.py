@@ -20,12 +20,12 @@ def run():
     data = request.get_json(force=True)
     errors = data['errors']
     timestamps = data['timestamps']
-    timestamps.append( str( {'flask_in': datetime.now()} ) )
+    timestamps.append( {'flask_in': str(datetime.now())} )
     lengthArr = data['lengthArr']
     request_data = data['request_data']
     name = data['request_data']['name']
     result = benchmark.handle_request(lengthArr, request_data)
-    timestamps.append( str( {'flask_out': datetime.now()} ) )
+    timestamps.append( {'flask_out': str(datetime.now())} )
     response_data = {
         "xAxis": lengthArr,
         "name": name,
