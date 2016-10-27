@@ -2,7 +2,8 @@ PORTS = {
   'javascript': 8001,
   'python': 8002,
   'static': 8003,
-  'ruby': 8004
+  'ruby': 8004,
+  'database': 8005
 //language: local port
 }
 
@@ -10,7 +11,8 @@ SERVICES = {
   'static': 'static',
   'javascript': 'express',
   'python': 'flask',
-  'ruby': 'rack'
+  'ruby': 'rack',
+  'database': 'database'
 //language: service name
 }
 
