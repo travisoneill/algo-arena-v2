@@ -17,12 +17,16 @@ export const Sorts =  {
 }`;
     }
     if(language === 'python'){
-      return `def bubble_sort(arr, done=False):
+      return `def bubble_sort(arr):
+    done = False
+    n = len(arr)
     while done == False:
         done = True
-        for idx, num in enumerate(arr[0:-1]):
-            if num > arr[idx+1]:
-                arr[idx], arr[idx+1] = arr[idx+1], arr[idx]
+        for i in range(n-1):
+            if arr[i] > arr[i+1]:
+                temp = arr[i]
+                arr[i+1] = arr[i]
+                arr[i] = temp
                 done = False
     return arr`
     }
