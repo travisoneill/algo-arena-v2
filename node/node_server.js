@@ -18,7 +18,7 @@ Server.post('/api/algos', function(req, res){
   data.timestamps.push( {express_out: new Date()} );
   // console.log(data);
   console.log(data.timestamps);
-  res.send(data);
+  res.send(request);
 });
 
 if (module === require.main) {

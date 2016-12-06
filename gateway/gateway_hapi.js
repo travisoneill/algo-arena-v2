@@ -27,14 +27,6 @@ server.route({
 
 server.route({
   method: 'GET',
-  path: '/env',
-  handler(req, res){
-    res(process.env);
-  }
-});
-
-server.route({
-  method: 'GET',
   path: '/{staticFile}',
   handler(req, res){
     const fileType = req.params.staticFile.match(/\w*$/);
