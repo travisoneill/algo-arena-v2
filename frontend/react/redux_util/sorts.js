@@ -19,14 +19,13 @@ export const Sorts =  {
     if(language === 'python'){
       return `def bubble_sort(arr):
     done = False
-    n = len(arr)
     while done == False:
         done = True
-        for i in range(n-1):
-            if arr[i] > arr[i+1]:
+        for i in range(1, len(arr)):
+            if arr[i] < arr[i-1]:
                 temp = arr[i]
-                arr[i+1] = arr[i]
-                arr[i] = temp
+                arr[i] = arr[i-1]
+                arr[i-1] = temp
                 done = False
     return arr`
     }

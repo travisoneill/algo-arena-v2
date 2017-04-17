@@ -1,8 +1,8 @@
 module.exports = {
   context: __dirname,
-  entry: "./redux_main.jsx",
+  entry: "./main.js",
   output: {
-    path: "./assets/",
+    path: "./static/",
     filename: "bundle.js"
   },
   module: {
