@@ -477,4 +477,55 @@ end`
     }
   }
 
+  selectionSort(language) {
+    if (language === 'javascript') {
+      return `function selectionSort(arr){
+  for (var i = 0; i < arr.length; i++) {
+    let max = arr[0];
+    let maxIdx = 0;
+    for (var j = 0; j < arr.length - i; j++) {
+      if (arr[j] > max) {
+        max = arr[j];
+        maxIdx = j;
+      }
+    }
+    let idx = arr.length - i - 1;
+    let temp = arr[idx];
+    arr[idx] = max;
+    arr[maxIdx] = temp;
+  }
+  return arr;
+}`
+    }
+    if (language === 'python') {
+      return `def selection_sort(lst):
+    for i in reversed(range(len(lst))):
+        mx = lst[0]
+        mx_idx = 0
+        for j in range(i+1):
+            if lst[j] > mx:
+                mx = lst[j]
+                mx_idx = j
+        lst[mx_idx], lst[j] = lst[j], lst[mx_idx]
+    return lst`
+    }
+    if (language === 'ruby') {
+      return `def selection_sort(arr)
+  arr.length.times do |i|
+    max = arr[0]
+    max_idx = 0
+    (arr.length - i).times do |j|
+      if arr[j] > max
+        max = arr[j]
+        max_idx = j
+      end
+    end
+    idx = arr.length - i - 1
+    arr[idx], arr[max_idx] = arr[max_idx], arr[idx]
+  end
+  return arr
+end`
+    }
+  }
+
 };
